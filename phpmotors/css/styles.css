@@ -1,0 +1,228 @@
+body{
+    background-image: url("../images/site/small_check.jpg");
+    display: flex;
+    justify-content: center;
+    font-family: 'Roboto Mono', monospace;
+    letter-spacing: -1px;
+}
+main{
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    justify-content: center;
+}
+h1 {
+    font-size: 4vw;
+    margin-left: 5px;
+}
+h2{
+    font-size: 3.8vw;
+}
+.content h2 {
+    font-size: 3.5vw;
+    color: #003366;;
+}
+.image{
+    position: relative;
+    background-image: url("../images/delorean.jpg");
+    background-repeat: no-repeat;
+    box-sizing: border-box;
+    background-size: 100%;
+    background-position-y: 10vw;
+}
+.content {
+    margin-left: 5px;
+    width: 100%;
+    height: 60vw;
+}
+.content p{
+    color: #003366;
+    line-height: 30%;
+    font-size: 0.9rem;
+}
+button{
+    font-family: 'Roboto Mono', monospace;
+    color: #3a3a3a;
+    background-color: #003366;
+    color: white;
+}
+button:hover{
+    background-color: #a6cbeb;
+    color: #3a3a3a;
+}
+/*hide button for small viewports*/
+#bg-btn{
+    display: none;
+}
+#sm-btn{
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin-top: -3vh;
+    font-size: x-large;
+}
+.reviews{
+    margin-left: 5px;
+}
+.reviews p {
+    font-size: small;
+}
+.upgrades{
+    margin-left: 5px;
+}
+.up-grid{
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-rows: auto auto;
+    gap: 10px;
+    width: 98%;
+}
+.grid-element{
+    display: flex;
+    flex-direction: column;
+}
+.grid-element a{
+    margin-left: auto;
+    margin-right: auto;
+    font-size: medium;
+    font-weight: 300;
+}
+.element-box{
+    display: flex;
+    width: 100%;
+    height: 80px;
+    background-color: #4c96d7;
+    border: 1px solid #3a3a3a;
+    justify-content: center;
+}
+a, a:hover, a:focus, a:active {
+    text-decoration: none;
+    color: inherit;
+}
+.page-wrapper {
+    width: 85%;
+    border-radius: 5px;
+    border: 3px solid #4c96d7;
+    background-color: white;
+}
+header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+header a{
+    margin-right: 3vw;
+}
+.nav-bar ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #3a3a3a;
+}
+.nav-bar ul li{
+    float: left;
+    transition: 0.2s;
+}
+.nav-bar ul li:hover{
+    background-color: #4c96d7;
+    transform: scale(1.1);
+}
+.nav-bar ul li a{
+    display: block;
+    color: white;
+    padding: 2vw;
+    text-align: center;
+    
+}
+.nav-bar ul li a:hover{
+    color: #3a3a3a;
+}
+hr{
+    border: 2px solid #3a3a3a;
+}
+footer{
+    text-align: center;
+    font-size: x-small;
+
+}
+
+
+/*Medium viewports*/
+@media only screen and (min-width: 600px) {
+    .nav-bar ul li a{
+        padding: 1vw;
+    }
+    .page-wrapper{
+        width: 70%;
+    }
+    .content{
+        height: 50vw;
+        font-size: large;
+    }
+    .image{
+        background-position-y: 13vw;
+    }
+    #bg-btn{
+        display: block;
+        font-size: large;
+    }
+    #sm-btn{
+        display: none;
+    }
+    footer {
+        line-height: 90%;
+    }
+
+    @media only screen and (min-width: 800px) {
+        .page-wrapper{
+            width: 80%;
+        }
+        h1 {
+            font-size: large;
+            margin-left: 5px;
+        }
+        h2{
+            font-size: 2vw;
+        }
+        .content h2  {
+            font-size: 1.5vw;
+        }
+        .content{
+            margin-left: 8%;
+        }
+        .image{
+            background-position-y: 5vw;
+        }
+        .big-grid{
+            display: grid;
+            grid-template-columns: auto auto;
+            grid-template-rows: auto;
+            justify-self: center;
+        }
+        .upgrades{
+            grid-column: 1/2;
+            grid-row: 1/2;
+            padding: 2vw;
+        }
+        .reviews{
+            grid-column: 2/3;
+            grid-row: 1/2;
+            padding: 2vw;
+            font-size: medium;
+        }
+        footer{
+            font-size: small;
+        }
+    }
+}
+
+.error-message {
+    margin-left: 5px;
+}
+.error-head {
+    font-size: x-large;
+}
+img.logo{
+    max-width: 100%;
+}

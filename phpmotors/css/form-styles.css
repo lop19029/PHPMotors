@@ -1,0 +1,24 @@
+h1 {
+    font-size: x-large;
+    margin-left: 5px;
+}
+form {
+    margin-left: 5px;
+}
+button {
+    padding: 5px;
+    font-size: large;
+}
+.text-link{
+    color: blue;
+}
+.info-note{
+    color: #3a3a3a;
+    font-size: small;
+}
+input[type=text]{
+    font-family: 'Roboto Mono', monospace;
+    padding: 5px;
+    border: solid 1px #3a3a3a;
+    font-size: medium;
+}

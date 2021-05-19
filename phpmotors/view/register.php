@@ -15,7 +15,15 @@
             </nav>
             <main>
                 <h1>Register</h1>
-                <form>
+                <form method="post" action="/CS 340/phpmotors/accounts/index.php">
+
+                    <?php
+                    if(isset($message)) {
+                        echo $message;
+                    }
+
+                    ?>
+
                     <p class="info-note">*All the fields are required.</p>
                     <label for="clientFirstname"><b>First name</b></label><br>
                     <input type="text" placeholder="John" id="clientFirstname" name="clientFirstname" required>
@@ -31,7 +39,9 @@
                     <input type="text" placeholder="Enter your password" id="clientPassword" name="clientPassword" required><br>
                     <label><input type="checkbox" name="showPassword">Show password</label>
                     <br>
-                    <button type="button">Register</button>
+                    <button type="submit" name="submit" id="regbtn" value="Register">Register</button>
+                    <!-- Add the action name - value pair -->
+                    <input type="hidden" name="action" value="register">
                     <br>
                 </form>
             </main>

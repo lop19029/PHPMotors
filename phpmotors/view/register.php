@@ -28,8 +28,8 @@
                     <label for="clientFirstname"><b>First name</b></label><br>
                     <input type="text" placeholder="John" id="clientFirstname" name="clientFirstname">
                     <br>
-                    <label for="clientLastName"><b>Last name</b></label><br>
-                    <input type="text" placeholder="Doe" id="clientLastName" name="clientLastName">
+                    <label for="clientLastname"><b>Last name</b></label><br>
+                    <input type="text" placeholder="Doe" id="clientLastname" name="clientLastname">
                     <br>
                     <label for="clientEmail"><b>Email</b></label><br>
                     <input type="text" placeholder="jhondoe@myemail.com" id="clientEmail" name="clientEmail">

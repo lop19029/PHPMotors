@@ -45,7 +45,21 @@
                 include '../view/register.php';
                 exit; 
             }
-            break;
+
+            //Send the data to the model
+            $regOutcome = regClient($clientFirstname, $clientLastname, $clientEmail, $clientPassword);
+            
+            //Check and report the result
+            if($regOutcome === 1){
+                $message = "<p>Thanks for registering $clientFirstname. Please use your email and password to login.</p>";
+                include '../view/login.php';
+                exit;
+            } 
+            else {
+                $message = "<p>Sorry $clientFirstname, but the registration failed. Please try again.</p>";
+                include "../view/register.php";
+                exit;
+            }
         default:
             break;
     }

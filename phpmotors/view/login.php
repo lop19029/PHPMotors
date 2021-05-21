@@ -15,6 +15,11 @@
             </nav>
             <main>
                 <div><h1>Sign In</h1></div> 
+                <?php
+                    if(isset($message)) {
+                        echo $message;
+                    }
+                    ?>
                 <form>
                     <label for="clientEmail"><b>Email</b></label><br>
                     <input type="text" placeholder="Enter Email" id="clientEmail" name="clientEmail" required>

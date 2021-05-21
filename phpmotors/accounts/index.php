@@ -5,6 +5,8 @@
     require_once "../library/connections.php";
     //Get the PHP Motors model for use as needed
     require_once "../model/main-model.php";
+    //Get the accounts model
+    require_once "../model/accounts-model.php";
 
     //Get the array of classifications
     $classifications = getClassifications();
@@ -18,11 +20,10 @@
     $navList.= "</ul>";
     
     
-    //$action = filter_input(INPUT_POST, 'action');
-    //if ($action = NULL){
-    //    $action = filter_input(INPUT_GET, 'action');
-    //}
     $action = filter_input(INPUT_GET, 'action');
+    if ($action == NULL){
+        $action = filter_input(INPUT_POST, 'action');
+    }
 
     switch ($action) {
         case 'Login':
@@ -30,6 +31,20 @@
             break;
         case 'Register':
             include '../view/register.php';
+            break;
+        case 'register';
+            // Filter and store the data
+            $clientFirstname = filter_input(INPUT_POST, 'clientFirstname');
+            $clientLastname = filter_input(INPUT_POST, 'clientLastname');
+            $clientEmail = filter_input(INPUT_POST, 'clientEmail');
+            $clientPassword = filter_input(INPUT_POST, 'clientPassword');
+
+            // Check for missing data
+            if(empty($clientFirstname) || empty($clientLastname) || empty($clientEmail) || empty($clientPassword)){
+                $message = '<p>Please provide information for all empty form fields.</p>';
+                include '../view/register.php';
+                exit; 
+            }
             break;
         default:
             break;

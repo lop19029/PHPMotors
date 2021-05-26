@@ -26,4 +26,19 @@ foreach ($classifications as $classification) {
     $classificationList.= "<option value='$classification['classificationId']'>$classification['classificationName']</option>";
 }
 $classificationList.= "</select>";
+
+
+$action = filter_input(INPUT_GET, 'action');
+    if ($action == NULL){
+        $action = filter_input(INPUT_POST, 'action');
+    }
+
+
+switch ($action) {
+    case 'something':
+        include 'something';
+        break;
+    default:
+        include 'somethingElse';
+        exit;
 ?>

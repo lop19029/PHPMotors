@@ -5,6 +5,8 @@
 require_once "../library/connections.php";
 //Get the PHP Motors model for use as needed
 require_once "../model/main-model.php";
+//Get the Vehicles model
+require_once "../model/vehicles-model.php";
 
 //Get the array of classifications
 $classifications = getClassifications();
@@ -39,7 +41,29 @@ switch ($action) {
         include '../view/addClassification.php';
         break;
     case 'addClassification':
+        // Filter and store the data
+        $classificationName = filter_input(INPUT_POST, 'classificationName');
+
+        // Check for missing data
+        if(empty($classificationName)){
+            $message = '<p>Please enter a new Classification Name.</p>';
+            include '../view/addClassification.php';
+            exit; 
+        }
+
+        //Send the data to the model
+        $newClassOutcome = addClassification($classificationName);
         
+        //Check and report the result
+        if($newClassOutcome === 1){
+            include '../view/vehicleManagement.php';
+            exit;
+        } 
+        else {
+            $message = "<p>Sorry, but the registration of $classificationName failed. Please try again.</p>";
+            include '../view/addClassification.php';
+            exit;
+        }
     default:
         include '../view/vehicleManagement.php';
         break;

@@ -2,9 +2,9 @@
 //This is the vehicles controller
 
 //Get the database connection file
-require_once "library/connections.php";
+require_once "../library/connections.php";
 //Get the PHP Motors model for use as needed
-require_once "model/main-model.php";
+require_once "../model/main-model.php";
 
 //Get the array of classifications
 $classifications = getClassifications();
@@ -23,7 +23,7 @@ $navList.= "</ul>";
 $classificationList = "<label for='classificationId'>Choose Car Classification</label>";
 $classificationList.= "<select id='classificationId' name='classificationId'>";
 foreach ($classifications as $classification) {
-    $classificationList.= "<option value='$classification['classificationId']'>$classification['classificationName']</option>";
+   $classificationList.= "<option value='$classification[classificationId]'>$classification[classificationName]</option>";
 }
 $classificationList.= "</select>";
 
@@ -39,6 +39,7 @@ switch ($action) {
         include 'something';
         break;
     default:
-        include 'somethingElse';
-        exit;
+        include '../view/vehicleManagement.php';
+        break;
+}
 ?>

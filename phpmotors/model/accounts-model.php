@@ -3,7 +3,6 @@
 //This is the accounts model
 
 
-
 //This function handles site registration
 function regClient($clientFirstname, $clientLastname, $clientEmail, $clientPassword) {
     // Create a connection object using the phpmotors connection function

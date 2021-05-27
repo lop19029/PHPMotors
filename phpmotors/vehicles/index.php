@@ -20,8 +20,8 @@ foreach ($classifications as $classification) {
 $navList.= "</ul>";
 
 // Build a drop down select list using the $classifications array
-$classificationList = "<label for='classificationId'>Choose Car Classification</label>";
-$classificationList.= "<select id='classificationId' name='classificationId'>";
+$classificationList = "<label for='classificationList'>Choose Car Classification</label>";
+$classificationList.= "<select id='classificationList' name='classificationList'>";
 foreach ($classifications as $classification) {
    $classificationList.= "<option value='$classification[classificationId]'>$classification[classificationName]</option>";
 }
@@ -35,9 +35,11 @@ $action = filter_input(INPUT_GET, 'action');
 
 
 switch ($action) {
-    case 'something':
-        include 'something';
+    case 'Classification':
+        include '../view/addClassification.php';
         break;
+    case 'addClassification':
+        
     default:
         include '../view/vehicleManagement.php';
         break;

@@ -22,8 +22,8 @@ foreach ($classifications as $classification) {
 $navList.= "</ul>";
 
 // Build a drop down select list using the $classifications array
-$classificationList = "<label for='classificationList'>Choose Car Classification</label>";
-$classificationList.= "<select id='classificationList' name='classificationList'>";
+$classificationList = "<label for='classificationId'>Choose Car Classification</label><br>";
+$classificationList.= "<select id='classificationId' name='classificationId'>";
 foreach ($classifications as $classification) {
    $classificationList.= "<option value='$classification[classificationId]'>$classification[classificationName]</option>";
 }
@@ -56,12 +56,48 @@ switch ($action) {
         
         //Check and report the result
         if($newClassOutcome === 1){
-            include '../view/vehicleManagement.php';
+            header("Location: /CS 340/phpmotors/vehicles/");
             exit;
         } 
         else {
             $message = "<p>Sorry, but the registration of $classificationName failed. Please try again.</p>";
             include '../view/addClassification.php';
+            exit;
+        }
+    case 'Vehicle':
+        include '../view/addVehicle.php';
+        break;
+    case 'addVehicle':
+        // Filter and store the data
+        $invMake = filter_input(INPUT_POST, 'invMake');
+        $invModel = filter_input(INPUT_POST, 'invModel');
+        $invDescription = filter_input(INPUT_POST, 'invDescription');
+        $invImage = filter_input(INPUT_POST, 'invImage');
+        $invThumbnail = filter_input(INPUT_POST, 'invThumbnail');
+        $invPrice = filter_input(INPUT_POST, 'invPrice');
+        $invStock = filter_input(INPUT_POST, 'invStock');
+        $invColor = filter_input(INPUT_POST, 'invColor');
+        $classificationId = filter_input(INPUT_POST, 'classificationId');
+
+        // Check for missing data
+        if(empty($invMake) || empty($invModel) || empty($invDescription) || empty($invImage) || empty($invThumbnail) || empty($invPrice) || empty($invStock) || empty($invColor) || empty($classificationId)) {
+            $message = '<p>Please provide information for all empty form fields.</p>';
+            include '../view/addVehicle.php';
+            exit; 
+        }
+
+        //Send the data to the model
+        $regCarOutcome = regCar($invMake, $invModel, $invDescription, $invImage, $invThumbnail, $invPrice, $invStock, $invColor, $classificationId);
+        
+        //Check and report the result
+        if($regCarOutcome === 1){
+            $message = "<p>Congratulations! Your $invMake $invModel was succesfully registered.</p>";
+            include '../view/addVehicle.php';
+            exit;
+        } 
+        else {
+            $message = "<p>Sorry, but the registration of the $invMake $invModel failed. Please try again.</p>";
+            include '../view/addVehicle.php';
             exit;
         }
     default:

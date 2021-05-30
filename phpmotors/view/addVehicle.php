@@ -21,7 +21,7 @@
                         echo $message;
                     }
                 ?>
-                <form method="post" action="/CS 340/phpmotors/vehicles/index.php">
+                <form method="post" action="/CS%20340/phpmotors/vehicles/index.php">
 
                     <p class="info-note">*All the fields are required.</p>
                     <!-- Get dynamic drop-down list from controller -->

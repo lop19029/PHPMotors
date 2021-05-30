@@ -21,7 +21,7 @@
                         echo $message;
                     }
                 ?>
-                <form method="post" action="/CS 340/phpmotors/vehicles/index.php">
+                <form method="post" action="/CS%20340/phpmotors/vehicles/index.php">
                     <label for="classificationName">Classification Name</label><br>
                     <input type="text" placeholder="Luxury" id="classificationName" name="classificationName">
                     <br><br>

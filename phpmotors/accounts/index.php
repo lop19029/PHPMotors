@@ -34,10 +34,10 @@
             break;
         case 'register';
             // Filter and store the data
-            $clientFirstname = filter_input(INPUT_POST, 'clientFirstname');
-            $clientLastname = filter_input(INPUT_POST, 'clientLastname');
-            $clientEmail = filter_input(INPUT_POST, 'clientEmail');
-            $clientPassword = filter_input(INPUT_POST, 'clientPassword');
+            $clientFirstname = trim(filter_input(INPUT_POST, 'clientFirstname', FILTER_SANITIZE_STRING));
+            $clientLastname = trim(filter_input(INPUT_POST, 'clientLastname', FILTER_SANITIZE_STRING));
+            $clientEmail = trim(filter_input(INPUT_POST, 'clientEmail', FILTER_SANITIZE_EMAIL));
+            $clientPassword = trim(filter_input(INPUT_POST, 'clientPassword', FILTER_SANITIZE_STRING));
 
             // Check for missing data
             if(empty($clientFirstname) || empty($clientLastname) || empty($clientEmail) || empty($clientPassword)){

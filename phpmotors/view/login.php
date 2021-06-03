@@ -22,12 +22,13 @@
                     ?>
                 <form>
                     <label for="clientEmail"><b>Email</b></label><br>
-                    <input type="text" placeholder="Enter Email" id="clientEmail" name="clientEmail" required>
-                    <br>
-                    <label for="clientPassword"><b>Password</b></label><br>
-                    <input type="text" placeholder="Enter your password" id="clientPassword" name="clientPassword" required>
+                    <input type="email" placeholder="Enter Email" id="clientEmail" name="clientEmail" required>
                     <br><br>
-                    <button type="button">Sign-In</button>
+                    <label for="clientPassword"><b>Password</b></label>
+                    <p class="info-note">Passwords must be 8 characters and contain at least 1 number, 1 capital letter, and 1 special character.</p>
+                    <input type="password" placeholder="Enter your password" id="clientPassword" name="clientPassword" required pattern="(?=^.{8,}$)(?=.*\d)(?=.*\W+)(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$">
+                    <br><br>
+                    <button type="submit">Sign-In</button>
                     <br><br>
                     <a class="text-link" href="/CS%20340/phpmotors/accounts/?action=Register">Not a member yet? Register for free!</a>
                 </form>

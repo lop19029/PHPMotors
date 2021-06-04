@@ -20,7 +20,7 @@
                         echo $message;
                     }
                     ?>
-                <form>
+                <form method="post" action="/CS 340/phpmotors/accounts/index.php">
                     <label for="clientEmail"><b>Email</b></label><br>
                     <input type="email" placeholder="Enter Email" id="clientEmail" name="clientEmail" <?php if(isset($clientEmail)){echo "value='$clientEmail'";}  ?> required>
                     <br><br>
@@ -31,6 +31,8 @@
                     <button type="submit">Sign-In</button>
                     <br><br>
                     <a class="text-link" href="/CS%20340/phpmotors/accounts/?action=Register">Not a member yet? Register for free!</a>
+                    <!-- Add the action name - value pair -->
+                    <input type="hidden" name="action" value="Login">
                 </form>
             </main>
             <?php require $_SERVER['DOCUMENT_ROOT'] . '/CS 340/phpmotors/snippets/footer.php'; ?>

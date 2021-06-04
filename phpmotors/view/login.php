@@ -22,7 +22,7 @@
                     ?>
                 <form>
                     <label for="clientEmail"><b>Email</b></label><br>
-                    <input type="email" placeholder="Enter Email" id="clientEmail" name="clientEmail" required>
+                    <input type="email" placeholder="Enter Email" id="clientEmail" name="clientEmail" <?php if(isset($clientEmail)){echo "value='$clientEmail'";}  ?> required>
                     <br><br>
                     <label for="clientPassword"><b>Password</b></label>
                     <p class="info-note">Passwords must be 8 characters and contain at least 1 number, 1 capital letter, and 1 special character.</p>

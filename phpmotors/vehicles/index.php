@@ -30,8 +30,7 @@ switch ($action) {
         break;
     case 'addClassification':
         // Filter and store the data
-        $classificationName = filter_input(INPUT_POST, 'classificationName');
-
+        $classificationName = trim(filter_input(INPUT_POST, 'classificationName', FILTER_SANITIZE_STRING));
         // Check for missing data
         if(empty($classificationName)){
             $message = '<p>Please enter a new Classification Name.</p>';

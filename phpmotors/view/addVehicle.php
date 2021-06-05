@@ -52,7 +52,7 @@ $classificationList.= "</select>";
                     <input type="text" placeholder="C 180" id="invModel" name="invModel" <?php if(isset($invModel)){echo "value='$invModel'";}  ?> required>
                     <br>
                     <label for="invDescription">Description</label><br>
-                    <textarea id="invDescription" name="invDescription" rows="2" cols="25" <?php if(isset($invDescription)){echo"value='$invDescription'";}?> required></textarea>
+                    <textarea id="invDescription" name="invDescription" rows="2" cols="25" required><?php if(isset($invDescription)){echo"$invDescription";}?></textarea>
                     <br>
                     <label for="invImage">Image Path</label><br>
                     <input type="text" id="invImage" name="invImage" value="/CS 340/phpmotors/images/no-image.png" <?php if(isset($invImage)){echo "value='$invImage'";}  ?> required>

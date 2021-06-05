@@ -1,4 +1,20 @@
-<!DOCTYPE html>
+<?php
+// Build a drop down select list using the $classifications array 
+$classificationList = "<label for='classificationId'>Choose Car Classification</label><br>";
+$classificationList.= "<select id='classificationId' name='classificationId'>";
+foreach ($classifications as $classification) {
+   $classificationList.= "<option value='$classification[classificationId]'";
+   //Ensure stickiness after server side validation
+    if(isset($classificationId)){
+        if($classification['classificationId'] === $classificationId){
+            $classificationList.=" selected ";
+        }
+    }
+
+   $classificationList.=">$classification[classificationName]</option>";
+}
+$classificationList.= "</select>";
+?><!DOCTYPE html>
 <html lang="en-US">
     <head>
         <meta charset = "UTF-8">

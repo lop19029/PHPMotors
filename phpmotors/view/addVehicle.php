@@ -30,28 +30,28 @@
                     </div>
                     
                     <label for="invMake">Make</label><br>
-                    <input type="text" placeholder="Mercedes-Benz" id="invMake" name="invMake">
+                    <input type="text" placeholder="Mercedes-Benz" id="invMake" name="invMake" <?php if(isset($invMake)){echo "value='$invMake'";}  ?> required>
                     <br>
                     <label for="invModel">Model</label><br>
-                    <input type="text" placeholder="C 180" id="invModel" name="invModel">
+                    <input type="text" placeholder="C 180" id="invModel" name="invModel" <?php if(isset($invModel)){echo "value='$invModel'";}  ?> required>
                     <br>
                     <label for="invDescription">Description</label><br>
-                    <textarea id="invDescription" name="invDescription" rows="2" cols="25"></textarea>
+                    <textarea id="invDescription" name="invDescription" rows="2" cols="25" <?php if(isset($invDescription)){echo"value='$invDescription'";}?> required></textarea>
                     <br>
                     <label for="invImage">Image Path</label><br>
-                    <input type="text" id="invImage" name="invImage" value="/CS 340/phpmotors/images/no-image.png">
+                    <input type="text" id="invImage" name="invImage" value="/CS 340/phpmotors/images/no-image.png" <?php if(isset($invImage)){echo "value='$invImage'";}  ?> required>
                     <br>
                     <label for="invThumbnail">Thumbnail Path</label><br>
-                    <input type="text" id="invThumbnail" name="invThumbnail" value="/CS 340/phpmotors/images/no-image-tn.png">
+                    <input type="text" id="invThumbnail" name="invThumbnail" value="/CS 340/phpmotors/images/no-image-tn.png" <?php if(isset($invThumbnail)){echo "value='$invThumbnail'";}  ?> required>
                     <br>
                     <label for="invPrice">Price</label><br>
-                    <input type="text" placeholder="100000" id="invPrice" name="invPrice" maxlength="20">
+                    <input type="number" placeholder="100000" id="invPrice" name="invPrice" <?php if(isset($invPrice)){echo "value='$invPrice'";}  ?> required>
                     <br>
                     <label for="invStock">Stock</label><br>
-                    <input type="text" placeholder="5" id="invStock" name="invStock" maxlength="10">
+                    <input type="number" placeholder="5" id="invStock" name="invStock" <?php if(isset($invStock)){echo "value='$invStock'";}  ?> required>
                     <br>
                     <label for="invColor">Color</label><br>
-                    <input type="text" placeholder="Black" id="invColor" name="invColor">
+                    <input type="text" placeholder="Black" id="invColor" name="invColor" <?php if(isset($invColor)){echo "value='$invColor'";}  ?> required>
                     <br><br>
                     <button type="submit" name="submit" id="carbtn" value="Add Vehicle">Add Vehicle</button>
                     

@@ -23,7 +23,7 @@
                 ?>
                 <form method="post" action="/CS%20340/phpmotors/vehicles/index.php">
                     <label for="classificationName">Classification Name</label><br>
-                    <input type="text" placeholder="Luxury" id="classificationName" name="classificationName">
+                    <input type="text" placeholder="Luxury" id="classificationName" name="classificationName" required>
                     <br><br>
                     <button type="submit" name="submit" id="classbtn" value="Add Classification">Add Classification</button>
                     

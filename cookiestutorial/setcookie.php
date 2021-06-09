@@ -12,10 +12,10 @@ $cookie_path = '/';
 //setcookie($cookie_name, $cookie_value, $cookie_expireTime, $cookie_path);
 
 //Delete cookie
-//if (isset($_COOKIE[$cookie_name])) {
-//     unset($_COOKIE[$cookie_name]);
-//     setcookie($cookie_name, '', $cookie_expireTime, $cookie_path); // empty value and old parameters
-//}
+if (isset($_COOKIE[$cookie_name])) {
+     unset($_COOKIE[$cookie_name]);
+     setcookie($cookie_name, '', $cookie_expireTime, $cookie_path); // empty value and old parameters
+}
 ?>
 
 <html>

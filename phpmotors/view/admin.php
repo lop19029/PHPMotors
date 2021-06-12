@@ -15,8 +15,10 @@ if(!$_SESSION['loggedin']){
     </head>
     <body>
         <div class = "page-wrapper">
-            <?php require $_SERVER['DOCUMENT_ROOT'] . '/CS 340/phpmotors/snippets/header.php'; ?> 
-            <?php echo $navList;?>
+            <?php require $_SERVER['DOCUMENT_ROOT'] . '/CS 340/phpmotors/snippets/header.php'; ?>
+            <nav class="nav-bar">  
+                <?php echo $navList;?>
+            </nav>
             <main>
                 <h1><?php echo $_SESSION['clientData']['clientFirstname'], '&nbsp;', $_SESSION['clientData']['clientLastname'];?></h1>
                 <p>You are logged in.</p>

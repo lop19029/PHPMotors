@@ -1,6 +1,9 @@
 <?php 
-//Add some code here
-
+//Check if the user has logged in
+if(!$_SESSION['loggedin']){
+    header('Location: /CS%20340/phpmotors/');
+    exit;
+}
 
 ?><!DOCTYPE html>
 <html lang="en-US">
@@ -15,7 +18,7 @@
             <?php require $_SERVER['DOCUMENT_ROOT'] . '/CS 340/phpmotors/snippets/header.php'; ?> 
             <?php echo $navList;?>
             <main>
-                <h1><?php echo echo $_SESSION['clientData']['clientFirstname'], '&nbsp;', $_SESSION['clientData']['clientLastname'];?></h1>
+                <h1><?php echo $_SESSION['clientData']['clientFirstname'], '&nbsp;', $_SESSION['clientData']['clientLastname'];?></h1>
                 <p>You are logged in.</p>
                 <br>
                 <ul>

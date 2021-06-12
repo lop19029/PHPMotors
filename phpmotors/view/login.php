@@ -19,6 +19,9 @@
                     if(isset($message)) {
                         echo $message;
                     }
+                    if (isset($_SESSION['message'])) {
+                        echo $_SESSION['message'];
+                       }
                     ?>
                 <form method="post" action="/CS 340/phpmotors/accounts/index.php">
                     <label for="clientEmail"><b>Email</b></label><br>

@@ -12,9 +12,12 @@
         <div class = "page-wrapper">
             <header>
                 <a href="/CS%20340/phpmotors/index.php"><img class="logo" src="images/site/logo.png" alt="logo"></a>
-                <?php if(isset($cookieFirstname)){
-                echo "<span>Welcome $cookieFirstname</span>";
-                } ?><a href="/CS%20340/phpmotors/accounts/?action=Login">My Account</a>
+                <?php 
+                    if($_SESSION['loggedin']){
+                        $clientName = $_SESSION['clientData']['clientFirstname'];
+                        echo "<span>Welcome $clientName</span>";
+                    } 
+                ?><a href="/CS%20340/phpmotors/accounts/?action=Login">My Account</a>
             </header>
             <nav class="nav-bar"> 
                 <?php echo $navList;?>

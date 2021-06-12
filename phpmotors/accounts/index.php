@@ -133,6 +133,7 @@
             }
         
         default:
+            include "../view/admin.php";
             break;
     }
 ?>   

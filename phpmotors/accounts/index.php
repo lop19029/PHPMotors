@@ -80,6 +80,11 @@
             // Store the array into the session
             $_SESSION['clientData'] = $clientData;
 
+            //Allow admin functionalities for client level 2 or 3
+            if($_SESSION['clientData']['clientLevel'] > 1){
+                $adminLink = "<a class='text-link' href='/CS%20340/phpmotors/vehicles/'>Click here for Vehicles Management</a>";
+            }
+
             // Send them to the admin view
             include '../view/admin.php';
             exit;

@@ -27,6 +27,12 @@ if(!$_SESSION['loggedin']){
                     <li>Email: <?php echo $_SESSION['clientData']['clientEmail'];?></li>
                 </ul>
                 <br>
+                <?php 
+                    if(isset($adminLink)){
+                        echo $adminLink;
+                    }
+                ?>
+                <br>
             </main>
             <?php require $_SERVER['DOCUMENT_ROOT'] . '/CS 340/phpmotors/snippets/footer.php'; ?>
         </div>

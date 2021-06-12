@@ -15,8 +15,11 @@
                 <?php 
                     if($_SESSION['loggedin']){
                         $clientName = $_SESSION['clientData']['clientFirstname'];
-                        echo "<span>Welcome $clientName</span>";
-                    } 
+                        echo "<span>Welcome </span><a href='/CS%20340/phpmotors/accounts/'>$clientName</a>";
+                    }
+                    elseif(isset($cookieFirstname)){
+                        echo "<span>Welcome $cookieFirstname</span>";
+                    }
                 ?><a href="/CS%20340/phpmotors/accounts/?action=Login">My Account</a>
             </header>
             <nav class="nav-bar"> 

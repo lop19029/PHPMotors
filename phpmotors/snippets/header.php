@@ -3,7 +3,7 @@
     <?php 
         if($_SESSION['loggedin']){
             $clientName = $_SESSION['clientData']['clientFirstname'];
-            echo "<span>$clientName |</span>";
+            echo "<a href='/CS%20340/phpmotors/accounts/'>$clientName</a><span> | </span>";
         } 
     ?><a href="/CS%20340/phpmotors/accounts/index.php?action=Login">My Account</a>
 </header>

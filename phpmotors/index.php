@@ -21,6 +21,11 @@
         $action = filter_input(INPUT_GET, 'action');
     }
     
+    // Check if the firstname cookie exists, get its value
+    if(isset($_COOKIE['firstname'])){
+        $cookieFirstname = filter_input(INPUT_COOKIE, 'firstname', FILTER_SANITIZE_STRING);
+    }
+    
     switch ($action) {
         case 'template':
             include 'template.php';

@@ -32,7 +32,7 @@
                     <br><br>
                     <a class="text-link" href="/CS%20340/phpmotors/accounts/?action=Register">Not a member yet? Register for free!</a>
                     <!-- Add the action name - value pair -->
-                    <input type="hidden" name="action" value="Login">
+                    <input type="hidden" name="action" value="processLogin">
                 </form>
             </main>
             <?php require $_SERVER['DOCUMENT_ROOT'] . '/CS 340/phpmotors/snippets/footer.php'; ?>

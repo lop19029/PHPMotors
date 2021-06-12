@@ -88,6 +88,17 @@
             // Send them to the admin view
             include '../view/admin.php';
             exit;
+        
+        case 'Logout':
+            //Unset client data
+            unset($_SESSION['clientData']);
+
+            //Destoy session
+            session_destroy();
+
+            //Return to main controller
+            header('Location: /CS%20340/phpmotors/');
+            exit;
 
         case 'Register':
             include '../view/register.php';

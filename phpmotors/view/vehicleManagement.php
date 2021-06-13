@@ -1,4 +1,18 @@
-<!DOCTYPE html>
+<?php 
+//Check if the user has logged in
+if(!$_SESSION['loggedin']){
+    header('Location: /CS%20340/phpmotors/');
+    exit;
+}
+//Check the user level
+elseif(isset($_SESSION['loggedin'])){
+    $clientLevel = $_SESSION['clientData']['clientLevel'];
+    if($clientLevel < 2){
+        header('Location: /CS%20340/phpmotors/');
+        exit;
+    }
+}
+?><!DOCTYPE html>
 <html lang="en-US">
     <head>
         <meta charset = "UTF-8">

@@ -118,7 +118,7 @@
             // Check for existing email address in the table
             if($existingEmail){
                 $message = "<p class='notice'>That email address already exists. Do you want to login instead?</p>";
-                include '../view/login.php';
+                include '../view/Login.php';
                 exit;
             }
 
@@ -138,8 +138,8 @@
             //Check and report the result
             if($regOutcome === 1){
                 setcookie('firstname', $clientFirstname, strtotime('+1 year'), '/');
-                $_SESSION['message'] = "Thanks for registering $clientFirstname. Please use your email and password to login.";                
-                header('Location: /CS%20340/phpmotors/accounts/?action=login');
+                $message = "Thanks for registering $clientFirstname. Please use your email and password to login.";                
+                header('Location: /CS%20340/phpmotors/accounts/?action=Login');
                 exit;
             } 
             else {

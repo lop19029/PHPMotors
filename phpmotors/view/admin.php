@@ -9,7 +9,7 @@ if(!$_SESSION['loggedin']){
 <html lang="en-US">
     <head>
         <meta charset = "UTF-8">
-        <title>PHP Motors - Login</title>
+        <title>PHP Motors - My Account</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="../css/styles.css" media="screen">
     </head>

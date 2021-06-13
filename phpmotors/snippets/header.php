@@ -3,7 +3,7 @@
     <?php 
         if(isset($_SESSION['loggedin'])){
             $userName = $_SESSION['clientData']['clientFirstname'];
-            echo "<span><a href='/CS%20340/phpmotors/accounts'> Welcome $userName</a></span>";
+            echo "<span><a href='/CS%20340/phpmotors/accounts'> Logged as: $userName</a></span>";
             echo "<a href='/CS%20340/phpmotors/accounts/?action=Logout'>Logout</a>";
         }
         else {

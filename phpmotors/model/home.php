@@ -13,15 +13,15 @@
             <header>
                 <a href="/CS%20340/phpmotors/index.php"><img class="logo" src="images/site/logo.png" alt="logo"></a>
                 <?php 
-                    if($_SESSION['loggedin']){
-                        $clientName = $_SESSION['clientData']['clientFirstname'];
-                        echo "<span>Welcome </span><a href='/CS%20340/phpmotors/accounts/'>$clientName</a>";
+                    if(isset($_SESSION['loggedin'])){
+                        $userName = $_SESSION['clientData']['clientFirstname'];
+                        echo "<span><a href='/CS%20340/phpmotors/accounts'> Welcome $userName</a></span>";
+                        echo "<a href='/CS%20340/phpmotors/accounts/?action=Logout'>Logout</a>";
                     }
-                    elseif(isset($cookieFirstname)){
-                        echo "<span>Welcome $cookieFirstname</span>";
+                    else {
+                        echo '<a href="/CS%20340/phpmotors/accounts/?action=Login">My Account</a>';
                     }
-                ?><a href="/CS%20340/phpmotors/accounts/?action=Login">My Account</a>
-            </header>
+                ?></header>
             <nav class="nav-bar"> 
                 <?php echo $navList;?>
             </nav>

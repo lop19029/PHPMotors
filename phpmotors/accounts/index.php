@@ -80,7 +80,7 @@
             // Store the array into the session
             $_SESSION['clientData'] = $clientData;
 
-            //Allow admin functionalities for client level 2 or 3
+            //Allow admin functionalities for clients level 2 or 3
             if($_SESSION['clientData']['clientLevel'] > 1){
                 $adminLink = "<a class='text-link' href='/CS%20340/phpmotors/vehicles/'>Click here for Vehicles Management</a>";
             }
@@ -149,6 +149,11 @@
             }
         
         default:
+            //Allow admin functionalities for clients level 2 or 3
+            if($_SESSION['clientData']['clientLevel'] > 1){
+                $adminLink = "<a class='text-link' href='/CS%20340/phpmotors/vehicles/'>Click here for Vehicles Management</a>";
+            }
+
             include "../view/admin.php";
             break;
     }

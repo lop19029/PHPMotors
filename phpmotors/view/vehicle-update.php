@@ -97,6 +97,7 @@ $classificationList.= "</select>";
                     
                     <!-- Add the action name - value pair -->
                     <input type="hidden" name="action" value="updateVehicle">
+                    <input type="hidden" name="action" value="<?php if(isset($invInfo['invId'])){ echo $invInfo['invId'];} elseif(isset($invId)){ echo $invId; } ?>">
                 </form>
             </main>
             <?php require $_SERVER['DOCUMENT_ROOT'] . '/CS 340/phpmotors/snippets/footer.php'; ?>

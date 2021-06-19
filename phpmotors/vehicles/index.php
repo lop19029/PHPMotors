@@ -109,7 +109,43 @@ switch ($action) {
         include '../view/vehicle-update.php';
         exit;
     break;
+    
+    case 'updateVehicle':
+        // Filter and store the data
+        $invMake = trim(filter_input(INPUT_POST, 'invMake', FILTER_SANITIZE_STRING));
+        $invModel = trim(filter_input(INPUT_POST, 'invModel', FILTER_SANITIZE_STRING));
+        $invDescription = trim(filter_input(INPUT_POST, 'invDescription', FILTER_SANITIZE_STRING));
+        $invImage = trim(filter_input(INPUT_POST, 'invImage', FILTER_SANITIZE_STRING));
+        $invThumbnail = trim(filter_input(INPUT_POST, 'invThumbnail', FILTER_SANITIZE_STRING));
+        $invPrice = trim(filter_input(INPUT_POST, 'invPrice', FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION));
+        $invStock = trim(filter_input(INPUT_POST, 'invStock', FILTER_SANITIZE_NUMBER_INT));
+        $invColor = trim(filter_input(INPUT_POST, 'invColor', FILTER_SANITIZE_STRING));
+        $classificationId = trim(filter_input(INPUT_POST, 'classificationId', FILTER_SANITIZE_NUMBER_INT));
+        $invId = filter_input(INPUT_POST, 'invId', FILTER_SANITIZE_NUMBER_INT);
 
+        // Check for missing data
+        if(empty($invMake) || empty($invModel) || empty($invDescription) || empty($invImage) || empty($invThumbnail) || empty($invPrice) || empty($invStock) || empty($invColor) || empty($classificationId)) {
+            $message = '<p>Please provide information for all empty form fields.</p>';
+            include '../view/vehicle-update.php';
+            exit; 
+        }
+
+        //Send the data to the model
+        $updateCarOutcome = updateVehicle($invMake, $invModel, $invDescription, $invImage, $invThumbnail, $invPrice, $invStock, $invColor, $classificationId, $invId);
+        
+        //Check and report the result
+        if($updateCarOutcome){
+            $message = "<p class='notify'>The $invMake $invModel was succesfully modified.</p>";
+            $_SESSION['message'] = $message;
+            header('location: /CS 340/phpmotors/vehicles/');
+            exit;
+        } 
+        else {
+            $message = "<p class='notify'>Sorry, we couldn't update the $invMake $invModel details. Please try again.</p>";
+            include '../view/vehicle-update.php';
+            exit;
+        }
+        break;
     default:
         $classificationList = buildClassificationList($classifications);
         include '../view/vehicleManagement.php';

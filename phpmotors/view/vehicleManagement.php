@@ -11,6 +11,10 @@ elseif(isset($_SESSION['loggedin'])){
         exit;
     }
 }
+
+if (isset($_SESSION['message'])) {
+    $message = $_SESSION['message'];
+   }
 ?><!DOCTYPE html>
 <html lang="en-US">
     <head>
@@ -34,6 +38,9 @@ elseif(isset($_SESSION['loggedin'])){
                 <?php
                     if (isset($message)) { 
                     echo $message; 
+                    }
+                    if (isset($_SESSION['message'])) {
+                        echo $_SESSION['message'];
                     } 
                     if (isset($classificationList)) { 
                     echo '<h2>Vehicles By Classification</h2>'; 
@@ -51,3 +58,4 @@ elseif(isset($_SESSION['loggedin'])){
     </body>
     <script src="../js/inventory.js"></script>
 </html>
+<?php unset($_SESSION['message']); ?>

@@ -44,7 +44,7 @@ if(!$_SESSION['loggedin']){
                     <input type="hidden" name="action" value="processClientUpdate">
                     <br>
                 </form>
-                
+                <br>
                 <div><h1>Change Password</h1><div>
                 <?php
                     if(isset($passwordMessage)) {
@@ -54,9 +54,9 @@ if(!$_SESSION['loggedin']){
                 <form method="post" action="/CS 340/phpmotors/accounts/index.php">
                     <p class="info-note">Passwords must be 8 characters and contain at least 1 number, 1 capital letter, and 1 special character.</p>
                     <label for="clientPassword"><b>Password</b></label><br>
-                    <input type="password" placeholder="Enter your password" id="clientPassword" name="clientPassword" required pattern="(?=^.{8,}$)(?=.*\d)(?=.*\W+)(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"><br>
+                    <input type="password" placeholder="Enter new password" id="clientPassword" name="clientPassword" required pattern="(?=^.{8,}$)(?=.*\d)(?=.*\W+)(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"><br>
                     <label><input type="checkbox" name="showPassword">Show password</label>
-                    <br>
+                    <br><br>
                     <button type="submit" name="submit" value="Update Password">Change Password</button>
                     <!-- Add the action name - value pair -->
                     <input type="hidden" name="action" value="updateClientPassword">

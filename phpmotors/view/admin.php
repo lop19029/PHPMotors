@@ -21,7 +21,7 @@ if(!$_SESSION['loggedin']){
                 <?php echo $navList;?>
             </nav>
             <main>
-                <h1><?php echo $_SESSION['clientData']['clientFirstname'], '&nbsp;', $_SESSION['clientData']['clientLastname'];?></h1>
+                <div><h1><?php echo $_SESSION['clientData']['clientFirstname'], '&nbsp;', $_SESSION['clientData']['clientLastname'];?></h1><div>
                 <p>You are logged in.</p>
                 <br>
                 <ul>
@@ -34,7 +34,7 @@ if(!$_SESSION['loggedin']){
                     echo $message; 
                     }
                     ?>
-                <h2>Account management</h2>
+                <h3>Account management</h3>
                 <p>Use this link to update account information</p>
                 <a class="text-link" href="/CS%20340/phpmotors/accounts/?action=updateClient">Update Account Information</a>
                 <br>
@@ -43,7 +43,7 @@ if(!$_SESSION['loggedin']){
                         if(isset($accountMessage)) { 
                             echo $message; 
                         }
-                        echo "<h2>Vehicle Management</h2><p>Use this link to manage the inventory</p>";
+                        echo "<h3>Vehicle Management</h3><p>Use this link to manage the inventory</p>";
 
                         echo $adminLink;
                     }

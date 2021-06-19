@@ -137,7 +137,7 @@ switch ($action) {
                 exit;
         } 
         else {
-            $message = "<p class='notice'>Error. the $invMake $invModel was not updated.</p>";
+            $message = "<p class='error-notice'>Error. the $invMake $invModel was not updated.</p>";
             include '../view/vehicle-update.php';
             exit;
             }
@@ -159,13 +159,13 @@ switch ($action) {
     
         $deleteResult = deleteItem($invId);
         if ($deleteResult) {
-            $message = "<p class='notice'>The $invMake $invModel was permanently deleted.</p>";
+            $message = "<p class='error-notice'>The $invMake $invModel was permanently deleted.</p>";
                 $_SESSION['message'] = $message;
                 header('location: /CS 340/phpmotors/vehicles/');
                 exit;
         } 
         else {
-            $message = "<p class='notice'>Error: $invMake $invModel was not deleted.</p>";
+            $message = "<p class='error-notice'>Error: $invMake $invModel was not deleted.</p>";
                 $_SESSION['message'] = $message;
                 header('location: /CS 340/phpmotors/vehicles/');
                 exit;

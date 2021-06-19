@@ -53,15 +53,19 @@ if(!$_SESSION['loggedin']){
                         echo $passwordMessage;
                     }
                 ?>
+                
                 <form method="post" action="/CS 340/phpmotors/accounts/index.php">
+                    <p>Entering a new password will change your current password.</p> 
                     <p class="info-note">Passwords must be 8 characters and contain at least 1 number, 1 capital letter, and 1 special character.</p>
                     <label for="clientPassword"><b>Password</b></label><br>
                     <input type="password" placeholder="Enter new password" id="clientPassword" name="clientPassword" required pattern="(?=^.{8,}$)(?=.*\d)(?=.*\W+)(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"><br>
                     <label><input type="checkbox" name="showPassword">Show password</label>
                     <br><br>
-                    <button type="submit" name="submit" value="Update Password">Change Password</button>
+                    <button type="submit" name="submit" value="Change Password">Change Password</button>
                     <!-- Add the action name - value pair -->
-                    <input type="hidden" name="action" value="updateClientPassword">
+                    <input type="hidden" name="action" value="changeClientPassword">
+                    <input type="hidden" name="clientId" value="<?php if(isset($_SESSION['clientData'])){ echo $_SESSION['clientData']['clientId']; } ?>">
+
                     <br>
                 </form>
             </main>

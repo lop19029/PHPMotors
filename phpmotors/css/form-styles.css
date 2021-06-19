@@ -22,3 +22,11 @@ input[type=text], input[type=email], input[type=number], input[type=password] {
     border: solid 1px #3a3a3a;
     font-size: medium;
 }
+
+p.error-notice{
+    color: red;
+}
+
+p.notice{
+    color: green;
+}

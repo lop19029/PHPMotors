@@ -37,7 +37,7 @@
 
             // Check for missing data
             if(empty($clientEmail) || empty($checkPassword)) {
-                $message = '<p>Please provide valid information for all the form fields.</p>';
+                $message = '<p class="error-notice">Please provide valid information for all the form fields.</p>';
                 include '../view/login.php';
                 exit; 
             }
@@ -47,7 +47,7 @@
 
             // Check if account exists within the table using the email address
             if(!$existingEmail){
-                $message = "<p class='notice'> Sorry, that account $clientEmail do not exist in our system. You can register by </p>";
+                $message = "<p class='error-notice'> Sorry, that account $clientEmail do not exist in our system. You can register by </p>";
                 $message.="<a class='text-link' href='/CS%20340/phpmotors/accounts/?action=Register'>click here.</a>";
                 include '../view/login.php';
                 exit;
@@ -64,7 +64,7 @@
             // If the hashes don't match create an error
             // and return to the login view
             if(!$hashCheck) {
-            $message = '<p class="notice">Please check your password and try again.</p>';
+            $message = '<p class="error-notice">Please check your password and try again.</p>';
             include '../view/login.php';
             exit;
             }
@@ -117,14 +117,14 @@
 
             // Check for existing email address in the table
             if($existingEmail){
-                $message = "<p class='notice'>That email address already exists. Do you want to login instead?</p>";
+                $message = "<p class='error-notice'>That email address already exists. Do you want to login instead?</p>";
                 include '../view/Login.php';
                 exit;
             }
 
             // Check for missing data
             if(empty($clientFirstname) || empty($clientLastname) || empty($clientEmail) || empty($checkPassword)){
-                $message = '<p class="notice">Please provide information for all empty form fields.</p>';
+                $message = '<p class="error-notice">Please provide information for all empty form fields.</p>';
                 include '../view/register.php';
                 exit; 
             }
@@ -162,7 +162,7 @@
 
             // Check for missing data
             if(empty($clientFirstname) || empty($clientLastname) || empty($clientEmail)){
-                $message = '<p class="notice">Please provide information for all empty form fields.</p>';
+                $message = '<p class="error-notice">Please provide information for all empty form fields.</p>';
                 include '../view/client-update.php';
                 exit; 
             }
@@ -175,7 +175,7 @@
 
                 // Check for existing email address in the table
                 if($existingEmail){
-                    $message = "<p class='notice'>That email address is already being used by another account.</p>";
+                    $message = "<p class='error-notice'>That email address is already being used by another account.</p>";
                     include '../view/client-update.php';
                     exit;
                 }
@@ -205,15 +205,47 @@
                 exit;
             } 
             else {
-                $message = "<p class='notice'>No information was updated.</p>";   
+                $message = "<p class='error-notice'>No information was updated.</p>";   
                 $_SESSION['message'] = $message;
                 header('Location: /CS%20340/phpmotors/accounts/');
                 exit;
             }
             break;
 
-        case 'updateClientPassword':
-            break;    
+        case 'changeClientPassword':
+            // Filter and store the data
+            $clientId = filter_input(INPUT_POST, 'clientId', FILTER_SANITIZE_NUMBER_INT);
+            $clientPassword = trim(filter_input(INPUT_POST, 'clientPassword', FILTER_SANITIZE_STRING));
+            $checkPassword = checkPassword($clientPassword);
+
+            // Check for missing data
+            if(empty($checkPassword)){
+                $passwordMessage = '<p class="notice">Please make sure your password matches the requirements.</p>';
+                include '../view/client-update.php';
+                exit; 
+            }
+
+            // Hash the checked password
+            $hashedPassword = password_hash($clientPassword, PASSWORD_DEFAULT);
+
+            //Send the data to the model
+            $changeOutcome = changePassword($hashedPassword, $clientId);
+            
+            //Check and report the result
+            if($changeOutcome === 1){
+                $message = "<p class='notice'>Your password has been updated.</p>";   
+                $_SESSION['message'] = $message;
+                header('Location: /CS%20340/phpmotors/accounts/');
+                exit;
+            } 
+            else {
+                $message = "<p class='error-notice'>Error: Password wasn't updated. Please try again.</p>";   
+                $_SESSION['message'] = $message;
+                header('Location: /CS%20340/phpmotors/accounts/');
+                exit;
+            }
+            break; 
+
         default:
             //Allow admin functionalities for clients level 2 or 3
             if($_SESSION['clientData']['clientLevel'] > 1){

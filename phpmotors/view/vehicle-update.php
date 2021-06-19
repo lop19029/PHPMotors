@@ -12,24 +12,25 @@ elseif(isset($_SESSION['loggedin'])){
     }
 }
 
-// Build the classifications option list
-$classifList = '<select name="classificationId" id="classificationId">';
-$classifList .= "<option>Choose a Car Classification</option>";
-foreach ($carClassifications as $classification) {
- $classifList .= "<option value='$classification[classificationId]'";
- if(isset($classificationId)){
-  if($classification['classificationId'] === $classificationId){
-   $classifList .= ' selected ';
-  }
- } 
- elseif(isset($invInfo['classificationId'])){
- if($classification['classificationId'] === $invInfo['classificationId']){
-  $classifList .= ' selected ';
- }
+// Build a drop down select list using the $classifications array 
+$classificationList = "<label for='classificationId'>Choose Car Classification</label><br>";
+$classificationList.= "<select id='classificationId' name='classificationId'>";
+foreach ($classifications as $classification) {
+   $classificationList.= "<option value='$classification[classificationId]'";
+   //Ensure stickiness after server side validation
+    if(isset($classificationId)){
+        if($classification['classificationId'] === $classificationId){
+            $classificationList.=" selected ";
+        }
+    }
+    elseif(isset($invInfo['classificationId'])){
+        if($classification['classificationId'] === $invInfo['classificationId']){
+            $classificationList .= ' selected ';
+        }
+    }
+   $classificationList.=">$classification[classificationName]</option>";
 }
-$classifList .= ">$classification[classificationName]</option>";
-}
-$classifList .= '</select>';
+$classificationList.= "</select>";
 ?><!DOCTYPE html>
 <html lang="en-US">
     <head>

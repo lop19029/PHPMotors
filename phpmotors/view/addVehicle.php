@@ -6,8 +6,7 @@ if(!$_SESSION['loggedin']){
 }
 //Check the user level
 elseif(isset($_SESSION['loggedin'])){
-    $clientLevel = $_SESSION['clientData']['clientLevel'];
-    if($clientLevel < 2){
+    if($_SESSION['clientData']['clientLevel'] < 2){
         header('Location: /CS%20340/phpmotors/');
         exit;
     }

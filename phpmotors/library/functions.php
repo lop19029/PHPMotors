@@ -23,4 +23,15 @@ function generateNav($classifications) {
     $navList.= "</ul>";
     return $navList;
 }
+
+// Build the classifications select list 
+function buildClassificationList($classifications){ 
+    $classificationList = '<select name="classificationId" id="classificationList">'; 
+    $classificationList .= "<option>Choose a Classification</option>"; 
+    foreach ($classifications as $classification) { 
+     $classificationList .= "<option value='$classification[classificationId]'>$classification[classificationName]</option>"; 
+    } 
+    $classificationList .= '</select>'; 
+    return $classificationList; 
+   }
 ?>

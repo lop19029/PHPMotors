@@ -134,7 +134,7 @@ switch ($action) {
         $updateCarOutcome = updateVehicle($invMake, $invModel, $invDescription, $invImage, $invThumbnail, $invPrice, $invStock, $invColor, $classificationId, $invId);
         
         //Check and report the result
-        if($updateCarOutcome){
+        if($updateCarOutcome===1){
             $message = "<p class='notify'>The $invMake $invModel was succesfully modified.</p>";
             $_SESSION['message'] = $message;
             header('location: /CS 340/phpmotors/vehicles/');

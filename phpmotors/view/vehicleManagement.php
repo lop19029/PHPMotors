@@ -36,12 +36,13 @@ if (isset($_SESSION['message'])) {
                     <li><a href="/CS%20340/phpmotors/vehicles/?action=Vehicle">Add Vehicle</a></li>
                 </ul>
                 <?php
-                    if (isset($message)) { 
-                    echo $message; 
-                    }
                     if (isset($_SESSION['message'])) {
                         echo $_SESSION['message'];
                     } 
+                    elseif (isset($message)) { 
+                    echo $message; 
+                    }
+                    
                     if (isset($classificationList)) { 
                     echo '<h2>Vehicles By Classification</h2>'; 
                     echo '<p>Choose a classification to see those vehicles</p>'; 

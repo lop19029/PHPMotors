@@ -83,7 +83,8 @@ function getInvItemInfo($invId){
    }
 
 //This function handles updating cars
-function updateVehicle($invMake, $invModel, $invDescription, $invImage,  $invThumbnail, $invPrice, $invStock, $invColor, $classificationId, $invId)    // Create a connection object using the phpmotors connection function
+function updateVehicle($invMake, $invModel, $invDescription, $invImage,  $invThumbnail, $invPrice, $invStock, $invColor, $classificationId, $invId) {   
+    // Create a connection object using the phpmotors connection function
     $db = phpmotorsConnect();
     // The SQL statement
     $sql = 'UPDATE inventory SET invMake = :invMake, invModel = :invModel, 

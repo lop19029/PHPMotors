@@ -44,13 +44,6 @@ elseif(isset($_SESSION['loggedin'])){
                 <!-- Display feedback message -->
                 <p class="alert">Confirm Vehicle Deletion. The delete is permanent.</p>
                 <form method="post" action="/CS%20340/phpmotors/vehicles/index.php">
-
-                    <p class="info-note">*All the fields are required.</p>
-                    <!-- Get dynamic drop-down list from controller -->
-                    <div class="drop-down">
-                        <?php echo $classificationList ?>
-                    </div>
-                    
                     <label for="invMake">Make</label><br>
                     <input type="text" readonly id="invMake" name="invMake" <?php if(isset($invInfo['invMake'])) {echo "value='$invInfo[invMake]'"; }?> >
                     <br>

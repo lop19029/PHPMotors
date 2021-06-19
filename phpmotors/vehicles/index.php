@@ -82,8 +82,9 @@ switch ($action) {
         //Check and report the result
         if($regCarOutcome === 1){
             $message = "<p>Congratulations! Your $invMake $invModel was succesfully registered.</p>";
-            include '../view/addVehicle.php';
-            exit;
+                $_SESSION['message'] = $message;
+                header('location: /CS 340/phpmotors/vehicles/');
+                exit;
         } 
         else {
             $message = "<p>Sorry, but the registration of the $invMake $invModel failed. Please try again.</p>";

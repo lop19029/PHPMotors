@@ -138,7 +138,8 @@
             //Check and report the result
             if($regOutcome === 1){
                 setcookie('firstname', $clientFirstname, strtotime('+1 year'), '/');
-                $message = "Thanks for registering $clientFirstname. Please use your email and password to login.";                
+                $message = "Thanks for registering $clientFirstname. Please use your email and password to login.";   
+                $_SESSION['message'] = $message;
                 header('Location: /CS%20340/phpmotors/accounts/?action=Login');
                 exit;
             } 

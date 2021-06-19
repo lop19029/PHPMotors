@@ -151,6 +151,25 @@ switch ($action) {
         include '../view/vehicle-delete.php';
         exit;
         break;
+    case 'deleteVehicle':
+        $invMake = filter_input(INPUT_POST, 'invMake', FILTER_SANITIZE_STRING);
+        $invModel = filter_input(INPUT_POST, 'invModel', FILTER_SANITIZE_STRING);
+        $invId = filter_input(INPUT_POST, 'invId', FILTER_SANITIZE_NUMBER_INT);
+    
+        $deleteResult = deleteItem($invId);
+        if ($deleteResult) {
+            $message = "<p class='notice'>The $invMake $invModel was permanently deleted.</p>";
+                $_SESSION['message'] = $message;
+                header('location: /CS 340/phpmotors/vehicles/');
+                exit;
+        } 
+        else {
+            $message = "<p class='notice'>Error: $invMake $invModel was not deleted.</p>";
+                $_SESSION['message'] = $message;
+                header('location: /CS 340/phpmotors/vehicles/');
+                exit;
+            }
+        break;
     default:
         $classificationList = buildClassificationList($classifications);
         include '../view/vehicleManagement.php';

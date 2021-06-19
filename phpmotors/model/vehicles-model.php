@@ -34,7 +34,7 @@ function regCar($invMake, $invModel, $invDescription, $invImage, $invThumbnail, 
          VALUES (:invMake, :invModel, :invDescription, :invImage, :invThumbnail, :invPrice, :invStock, :invColor, :classificationId)';
     // Create the prepared statement using the phpmotors connection
     $stmt = $db->prepare($sql);
-    // The next four lines replace the placeholders in the SQL
+    // The next lines replace the placeholders in the SQL
     // statement with the actual values in the variables
     // and tells the database the type of data it is
     $stmt->bindValue(':invMake', $invMake, PDO::PARAM_STR);
@@ -94,7 +94,7 @@ function updateVehicle($invMake, $invModel, $invDescription, $invImage,  $invThu
 	classificationId = :classificationId WHERE invId = :invId';
     // Create the prepared statement using the phpmotors connection
     $stmt = $db->prepare($sql);
-    // The next four lines replace the placeholders in the SQL
+    // The next lines replace the placeholders in the SQL
     // statement with the actual values in the variables
     // and tells the database the type of data it is
     $stmt->bindValue(':invMake', $invMake, PDO::PARAM_STR);
@@ -106,6 +106,28 @@ function updateVehicle($invMake, $invModel, $invDescription, $invImage,  $invThu
     $stmt->bindValue(':invStock', $invStock, PDO::PARAM_STR);
     $stmt->bindValue(':invColor', $invColor, PDO::PARAM_STR);
     $stmt->bindValue(':classificationId', $classificationId, PDO::PARAM_STR);
+    $stmt->bindValue(':invId', $invId, PDO::PARAM_INT);
+    // Insert the data
+    $stmt->execute();
+    // Ask how many rows changed as a result of our insert
+    $rowsChanged = $stmt->rowCount();
+    // Close the database interaction
+    $stmt->closeCursor();
+    // Return the indication of success (rows changed)
+    return $rowsChanged;
+}
+
+//This function handles deleting cars
+function deleteItem($invId) {   
+    // Create a connection object using the phpmotors connection function
+    $db = phpmotorsConnect();
+    // The SQL statement
+    $sql = 'DELETE FROM inventory WHERE invId = :invId';
+    // Create the prepared statement using the phpmotors connection
+    $stmt = $db->prepare($sql);
+    // The next line replace the placeholders in the SQL
+    // statement with the actual values in the variables
+    // and tells the database the type of data it is
     $stmt->bindValue(':invId', $invId, PDO::PARAM_INT);
     // Insert the data
     $stmt->execute();

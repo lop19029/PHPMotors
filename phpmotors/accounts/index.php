@@ -124,7 +124,7 @@
 
             // Check for missing data
             if(empty($clientFirstname) || empty($clientLastname) || empty($clientEmail) || empty($checkPassword)){
-                $message = '<p>Please provide information for all empty form fields.</p>';
+                $message = '<p class="notice">Please provide information for all empty form fields.</p>';
                 include '../view/register.php';
                 exit; 
             }
@@ -138,13 +138,13 @@
             //Check and report the result
             if($regOutcome === 1){
                 setcookie('firstname', $clientFirstname, strtotime('+1 year'), '/');
-                $message = "Thanks for registering $clientFirstname. Please use your email and password to login.";   
+                $message = "<p class='notice'>Thanks for registering $clientFirstname. Please use your email and password to login.</p>";   
                 $_SESSION['message'] = $message;
                 header('Location: /CS%20340/phpmotors/accounts/?action=Login');
                 exit;
             } 
             else {
-                $message = "<p>Sorry, $clientFirstname, but the registration failed. Please try again.</p>";
+                $message = "<p class='notice'>Sorry, $clientFirstname, but the registration failed. Please try again.</p>";
                 include "../view/register.php";
                 exit;
             }
@@ -154,7 +154,64 @@
             break;
 
         case 'processClientUpdate':
+            // Filter and store the data
+            $clientFirstname = trim(filter_input(INPUT_POST, 'clientFirstname', FILTER_SANITIZE_STRING));
+            $clientLastname = trim(filter_input(INPUT_POST, 'clientLastname', FILTER_SANITIZE_STRING));
+            $clientEmail = trim(filter_input(INPUT_POST, 'clientEmail', FILTER_SANITIZE_EMAIL));
+            $clientId = filter_input(INPUT_POST, 'clientId', FILTER_SANITIZE_NUMBER_INT);
+
+            // Check for missing data
+            if(empty($clientFirstname) || empty($clientLastname) || empty($clientEmail)){
+                $message = '<p class="notice">Please provide information for all empty form fields.</p>';
+                include '../view/client-update.php';
+                exit; 
+            }
+
+            //Check for existing email only if the client is trying to change the current email
+            $checkNewEmail = checkNewEmail($clientEmail, $clientId);
+            if($checkNewEmail){
+                // Check for an existing email
+                $existingEmail = checkExistingEmail($clientEmail);
+
+                // Check for existing email address in the table
+                if($existingEmail){
+                    $message = "<p class='notice'>That email address is already being used by another account.</p>";
+                    include '../view/client-update.php';
+                    exit;
+                }
+            }
+
+            //Send the data to the model
+            $updateOutcome = updateClient($clientFirstname, $clientLastname, $clientEmail, $clientId);
+            
+            //Check and report the result
+            if($updateOutcome === 1){
+                setcookie('firstname', $clientFirstname, strtotime('+1 year'), '/');
+                
+                //Update session
+                $clientData = getClient($clientEmail);
+
+                // Remove the password from the array
+                // the array_pop function removes the last
+                // element from an array
+                array_pop($clientData);
+
+                // Store the array into the session
+                $_SESSION['clientData'] = $clientData;
+
+                $message = "<p class='notice'>$clientFirstname, your info has been updated.</p>";   
+                $_SESSION['message'] = $message;
+                header('Location: /CS%20340/phpmotors/accounts/');
+                exit;
+            } 
+            else {
+                $message = "<p class='notice'>No information was updated.</p>";   
+                $_SESSION['message'] = $message;
+                header('Location: /CS%20340/phpmotors/accounts/');
+                exit;
+            }
             break;
+
         case 'updateClientPassword':
             break;    
         default:

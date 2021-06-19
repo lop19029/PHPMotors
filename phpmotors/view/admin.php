@@ -23,6 +23,13 @@ if(!$_SESSION['loggedin']){
             <main>
                 <div><h1><?php echo $_SESSION['clientData']['clientFirstname'], '&nbsp;', $_SESSION['clientData']['clientLastname'];?></h1><div>
                 <p>You are logged in.</p>
+                <?php if (isset($_SESSION['message'])) {
+                        echo $_SESSION['message'];
+                    } 
+                    elseif (isset($message)) { 
+                    echo $message; 
+                    }
+                ?>
                 <br>
                 <ul>
                     <li>First name: <?php echo $_SESSION['clientData']['clientFirstname'];?></li>
@@ -30,23 +37,13 @@ if(!$_SESSION['loggedin']){
                     <li>Email: <?php echo $_SESSION['clientData']['clientEmail'];?></li>
                 </ul>
                 <br>
-                <?php if(isset($accountMessage)) { 
-                    echo $message; 
-                    }
-                    ?>
                 <h3>Account management</h3>
                 <p>Use this link to update account information</p>
                 <a class="text-link" href="/CS%20340/phpmotors/accounts/?action=updateClient">Update Account Information</a>
                 <br>
                 <?php 
-                    if(isset($adminLink)){
-                        if(isset($accountMessage)) { 
-                            echo $message; 
-                        }
                         echo "<h3>Vehicle Management</h3><p>Use this link to manage the inventory</p>";
-
                         echo $adminLink;
-                    }
                 ?>
                 <br>
             </main>

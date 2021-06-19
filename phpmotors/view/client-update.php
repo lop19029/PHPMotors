@@ -24,8 +24,8 @@ if(!$_SESSION['loggedin']){
                 
                 <div><h1>Manage Account</h1><div>
                 <?php
-                    if(isset($accountMessage)) {
-                        echo $accountMessage;
+                    if(isset($message)) {
+                        echo $message;
                     }
                 ?>
                 <form method="post" action="/CS 340/phpmotors/accounts/index.php">
@@ -42,6 +42,8 @@ if(!$_SESSION['loggedin']){
                     <button type="submit" name="submit" value="Update User">Update Info</button>
                     <!-- Add the action name - value pair -->
                     <input type="hidden" name="action" value="processClientUpdate">
+                    <input type="hidden" name="clientId" value="<?php if(isset($_SESSION['clientData'])){ echo $_SESSION['clientData']['clientId']; } ?>">
+
                     <br>
                 </form>
                 <br>

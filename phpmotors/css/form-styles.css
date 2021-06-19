@@ -16,7 +16,7 @@ button {
     color: #3a3a3a;
     font-size: small;
 }
-input[type=text]{
+input[type=text], input[type=email], input[type=number], input[type=password] {
     font-family: 'Roboto Mono', monospace;
     padding: 5px;
     border: solid 1px #3a3a3a;

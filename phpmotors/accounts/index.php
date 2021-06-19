@@ -150,7 +150,13 @@
             }
         
         case 'updateClient':
+            include "../view/client-update.php";
             break;
+
+        case 'processClientUpdate':
+            break;
+        case 'updateClientPassword':
+            break;    
         default:
             //Allow admin functionalities for clients level 2 or 3
             if($_SESSION['clientData']['clientLevel'] > 1){

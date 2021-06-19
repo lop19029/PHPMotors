@@ -82,7 +82,7 @@
 
             //Allow admin functionalities for clients level 2 or 3
             if($_SESSION['clientData']['clientLevel'] > 1){
-                $adminLink = "<a class='text-link' href='/CS%20340/phpmotors/vehicles/'>Click here for Vehicles Management</a>";
+                $adminLink = "<a class='text-link' href='/CS%20340/phpmotors/vehicles/'>Vehicle Management.</a>";
             }
 
             // Send them to the admin view
@@ -149,10 +149,12 @@
                 exit;
             }
         
+        case 'updateClient':
+            break;
         default:
             //Allow admin functionalities for clients level 2 or 3
             if($_SESSION['clientData']['clientLevel'] > 1){
-                $adminLink = "<a class='text-link' href='/CS%20340/phpmotors/vehicles/'>Click here for Vehicles Management</a>";
+                $adminLink = "<a class='text-link' href='/CS%20340/phpmotors/vehicles/'>Vehicle Management.</a>";
             }
 
             include "../view/admin.php";

@@ -22,13 +22,13 @@ if(!$_SESSION['loggedin']){
             </nav>
             <main>
                 
-                <div><h1>Manage Account</h1><div>
+                <div><h1>Manage Account</h1></div>
                 <?php
                     if(isset($message)) {
                         echo $message;
                     }
                 ?>
-                <form method="post" action="/CS 340/phpmotors/accounts/index.php">
+                <form method="post" action="/CS%20340/phpmotors/accounts/index.php">
                     <p class="info-note">*All the fields are required.</p>
                     <label for="clientFirstname"><b>First name</b></label><br>
                     <input type="text" id="clientFirstname" name="clientFirstname" <?php if(isset($clientFirstname)){echo "value='$clientFirstname'";} elseif(isset($_SESSION['clientData']['clientFirstname'])) {echo "value='".$_SESSION['clientData']['clientFirstname']."'"; }  ?> required>
@@ -47,14 +47,14 @@ if(!$_SESSION['loggedin']){
                     <br>
                 </form>
                 <br>
-                <div><h1>Change Password</h1><div>
+                <div><h1>Change Password</h1></div>
                 <?php
                     if(isset($passwordMessage)) {
                         echo $passwordMessage;
                     }
                 ?>
                 
-                <form method="post" action="/CS 340/phpmotors/accounts/index.php">
+                <form method="post" action="/CS%20340/phpmotors/accounts/index.php">
                     <p>Entering a new password will change your current password.</p> 
                     <p class="info-note">Passwords must be 8 characters and contain at least 1 number, 1 capital letter, and 1 special character.</p>
                     <label for="clientPassword"><b>Password</b></label><br>

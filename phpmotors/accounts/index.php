@@ -82,7 +82,7 @@
 
             //Allow admin functionalities for clients level 2 or 3
             if($_SESSION['clientData']['clientLevel'] > 1){
-                $adminLink = "<a class='text-link' href='/CS%20340/phpmotors/vehicles/'>Vehicle Management.</a>";
+                $adminLink = "<h3>Vehicle Management</h3><p>Use this link to manage the inventory</p><br><a class='text-link' href='/CS%20340/phpmotors/vehicles/'>Vehicle Management.</a>";
             }
 
             // Send them to the admin view
@@ -189,12 +189,7 @@
                 setcookie('firstname', $clientFirstname, strtotime('+1 year'), '/');
                 
                 //Update session
-                $clientData = getClient($clientEmail);
-
-                // Remove the password from the array
-                // the array_pop function removes the last
-                // element from an array
-                array_pop($clientData);
+                $clientData = getClientData($clientId);
 
                 // Store the array into the session
                 $_SESSION['clientData'] = $clientData;
@@ -220,7 +215,7 @@
 
             // Check for missing data
             if(empty($checkPassword)){
-                $passwordMessage = '<p class="notice">Please make sure your password matches the requirements.</p>';
+                $passwordMessage = '<p class="error-notice">Please make sure your password matches the requirements.</p>';
                 include '../view/client-update.php';
                 exit; 
             }
@@ -249,7 +244,7 @@
         default:
             //Allow admin functionalities for clients level 2 or 3
             if($_SESSION['clientData']['clientLevel'] > 1){
-                $adminLink = "<a class='text-link' href='/CS%20340/phpmotors/vehicles/'>Vehicle Management.</a>";
+                $adminLink = "<h3>Vehicle Management</h3><p>Use this link to manage the inventory</p><br><a class='text-link' href='/CS%20340/phpmotors/vehicles/'>Vehicle Management.</a>";
             }
 
             include "../view/admin.php";

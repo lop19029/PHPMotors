@@ -99,6 +99,18 @@ function updateClient($clientFirstname, $clientLastname, $clientEmail, $clientId
     return $rowsChanged;
 }
 
+// Get client data based on the Id
+function getClientData($clientId){
+    $db = phpmotorsConnect();
+    $sql = 'SELECT clientId, clientFirstname, clientLastname, clientEmail, clientLevel FROM clients WHERE clientId = :clientId';
+    $stmt = $db->prepare($sql);
+    $stmt->bindValue(':clientId', $clientId, PDO::PARAM_STR);
+    $stmt->execute();
+    $clientData = $stmt->fetch(PDO::FETCH_ASSOC);
+    $stmt->closeCursor();
+    return $clientData;
+}
+
 //This function handles changing a users password
 function changePassword($clientPassword, $clientId) {   
     // Create a connection object using the phpmotors connection function

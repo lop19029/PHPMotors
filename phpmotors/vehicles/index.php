@@ -177,10 +177,11 @@ switch ($action) {
         $vehicles = getVehiclesByClassification($classificationName);
         if(!count($vehicles)){
             $message = "<p class='error-notice'>Sorry, no $classificationName vehicles could be found.</p>";
-          } else {
+        } 
+        else {
             $vehicleDisplay = buildVehiclesDisplay($vehicles);
-          }
-          include '../view/classification.php';
+        }
+        include '../view/classification.php';
         break;
 
     default:

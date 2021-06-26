@@ -2,7 +2,7 @@
 <html lang="en-US">
     <head>
         <meta charset = "UTF-8">
-        <title><?php echo $invMake." ".$invModel; ?> details | PHP Motors, Inc.</title>
+        <title><?php echo $invMake." ".$invModel." Details"; ?> | PHP Motors, Inc.</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="../css/styles.css" media="screen">
         <link rel="stylesheet" type="text/css" href="../css/form-styles.css" media="screen">

@@ -50,4 +50,36 @@ function buildVehiclesDisplay($vehicles){
     $dv .= '</ul>';
     return $dv;
 }
+
+function buildVehicleDetails($vehicleInfo){
+    $dv = "<div class='vehicle-display-wrapper'>";
+
+    $dv .= "<div class='display-image'>";
+    $dv .= "<img src='$vehicleInfo[invImage]' alt='Image of $vehicleInfo[invMake] $vehicleInfo[invModel] on phpmotors.com'>";
+    $dv .= "</div>";
+
+    $dv .= "<div class='display-details-wrapper'>";
+
+    $dv .= "<div class='display-title'>";
+    $dv .= "<h2>$vehicleInfo[invMake] $vehicleInfo[invModel] Details</h2>";
+    $dv .= "</div>";
+    $dv .= "<div class='display-description'>";
+    $dv .= "<p>$vehicleInfo[invDescription]</p>";
+    $dv .= "</div>";
+    $dv .= "<div class='display-color'>";
+    $dv .= "<p>Color: $vehicleInfo[invColor]</p>";
+    $dv .= "</div>";
+    $dv .= "<div class='display-stock'>";
+    $dv .= "<p>Available: $vehicleInfo[invStock]</p>";
+    $dv .= "</div>";
+    $dv .= "<div class='display-price'>";
+    $dv .= "<p>Price: $$vehicleInfo[invPrice]</p>";
+    $dv .= "</div>";
+
+    $dv .= "</div>";
+
+    $dv .= "</div>";
+
+    return $dv;
+}
 ?>

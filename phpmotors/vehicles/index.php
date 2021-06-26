@@ -183,7 +183,11 @@ switch ($action) {
         }
         include '../view/classification.php';
         break;
-
+    case 'vehicle-display':
+        $invId = filter_input(INPUT_GET, 'invId', FILTER_VALIDATE_INT);
+        echo var_dump($invId);
+        exit;
+        break;
     default:
         $classificationList = buildClassificationList($classifications);
         include '../view/vehicleManagement.php';

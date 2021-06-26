@@ -185,8 +185,14 @@ switch ($action) {
         break;
     case 'vehicle-display':
         $invId = filter_input(INPUT_GET, 'invId', FILTER_VALIDATE_INT);
-        echo var_dump($invId);
-        exit;
+        $vehicleInfo = getInvItemInfo($invId);
+        if(!count($vehicleInfo)){
+            $message = "<p class='error-notice'>Sorry, no info could be found.</p>";
+        }
+        else {
+            $vehicleShow = buildVehicleInfo($vehicleInfo);
+        }
+        include '../view/vehicle.php';
         break;
     default:
         $classificationList = buildClassificationList($classifications);

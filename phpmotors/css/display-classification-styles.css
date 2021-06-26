@@ -1,3 +1,69 @@
-.inv-display {
-    display: none;
+/* For vehicle display in classification view */
+#inv-display{
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+   }
+   
+#inv-display li{
+    margin-bottom: .5em;
+    border: 1px #ccc solid;
+    border-radius: 5px;
+    margin: 2px;
+    list-style-type: none;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    align-items: center;
+}
+#inv-display li:hover{
+    transform: scale(102%);
+    transition: 0.3s ease-in-out;
+    background-color: #4c96d7;
+    color: white;
+}
+
+#inv-display li img {
+    width: 100%;
+    height: 100%;
+    max-height: 150px;
+}
+
+.inv-display-info-wrapper{
+    margin: 5px;
+}
+
+.inv-display-image-wrapper{
+    height: 100%;
+}
+
+/*Large viewports*/
+@media only screen and (min-width: 800px){
+#inv-display {
+    flex-flow: row wrap;
+    justify-content: flex-start;
+}
+
+#inv-display h2{
+    font-size: 1rem;
+}
+
+#inv-display li {
+    max-width: 200px;
+    flex: 1 0 auto;
+    text-align: center;
+    height: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#inv-display div {
+    width: 100%;
+}
+
+#inv-display li img {
+    max-width: 100%;
+    height: auto;
+}
 }

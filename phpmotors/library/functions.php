@@ -44,7 +44,7 @@ function buildVehiclesDisplay($vehicles){
     $dv .= "<a href='/CS%20340/phpmotors/vehicles/?action=vehicle-display&invId=".urlencode($vehicle['invId'])."&invMake=".urlencode($vehicle['invMake'])."&invModel=".urlencode($vehicle['invModel'])."'><img src='$vehicle[invThumbnail]' alt='Image of $vehicle[invMake] $vehicle[invModel] on phpmotors.com'></a></div>";
     $dv .= "<div class = 'inv-display-info-wrapper'>";
     $dv .= "<a class='text-link' href='/CS%20340/phpmotors/vehicles/?action=vehicle-display&invId=".urlencode($vehicle['invId'])."&invMake=".urlencode($vehicle['invMake'])."&invModel=".urlencode($vehicle['invModel'])."'><h2>$vehicle[invMake] $vehicle[invModel]</h2></a>";
-    $dv .= "<span>$$vehicle[invPrice]</span></div>";
+    $dv .= "<span>$".number_format($vehicle['invPrice'])."</span></div>";
     $dv .= '</li>';
     }
     $dv .= '</ul>';
@@ -73,7 +73,7 @@ function buildVehicleDetails($vehicleInfo){
     $dv .= "<p>Available: $vehicleInfo[invStock]</p>";
     $dv .= "</div>";
     $dv .= "<div class='display-price'>";
-    $dv .= "<p>Price: $$vehicleInfo[invPrice]</p>";
+    $dv .= "<p>Price: $".number_format($vehicleInfo['invPrice'])."</p>";
     $dv .= "</div>";
 
     $dv .= "</div>";

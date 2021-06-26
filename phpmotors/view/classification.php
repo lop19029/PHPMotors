@@ -5,7 +5,7 @@
         <title><?php echo $classificationName; ?> vehicles | PHP Motors, Inc.</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="../css/styles.css" media="screen">
-        <link rel="stylesheet" type="text/css" href="../css/form-styles.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="../css/display-classification-styles.css" media="screen">
     </head>
     <body>
         <div class = "page-wrapper">

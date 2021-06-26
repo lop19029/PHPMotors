@@ -23,10 +23,3 @@ input[type=text], input[type=email], input[type=number], input[type=password] {
     font-size: medium;
 }
 
-p.error-notice{
-    color: red;
-}
-
-p.notice{
-    color: green;
-}

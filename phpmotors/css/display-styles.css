@@ -1,0 +1,19 @@
+.vehicle-display-wrapper{
+    display: grid;
+    grid-template-columns: auto;
+}
+
+.display-image img{
+    max-width: 100%;
+}
+
+.display-details-wrapper div p, .display-details-wrapper h2{
+    margin-left: 5px;
+}
+
+.display-description, .display-stock{
+    background-color: #ccc;
+    padding: 3px;
+}
+
+

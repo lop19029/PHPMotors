@@ -8,7 +8,7 @@
 }
 
 .display-details-wrapper div p, .display-details-wrapper h2{
-    margin-left: 5px;
+    margin: 5px;
 }
 
 .display-description, .display-stock{
@@ -16,4 +16,10 @@
     padding: 3px;
 }
 
-
+/*Large Viewports*/
+@media only screen and (min-width: 800px) {
+    .vehicle-display-wrapper{
+        display: grid;
+        grid-template-columns: auto auto;
+    }
+}

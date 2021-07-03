@@ -9,7 +9,9 @@
     <body>
         <div class = "page-wrapper">
                 <?php require $_SERVER['DOCUMENT_ROOT'] . '/CS 340/phpmotors/snippets/header.php'; ?> 
+            <nav class="nav-bar"> 
                 <?php echo $navList;?>
+            </nav>
             <main>
                 <h1>Content Title Here</h1>
             </main>

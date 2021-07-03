@@ -23,7 +23,7 @@ if ($action == NULL) {
 * Variables for use with the Image Upload Functionality
 * **************************************************** */
 // directory name where uploaded images are stored
-$image_dir = '/CS%20340/phpmotors/uploads/images';
+$image_dir = '/CS 340/phpmotors/uploads/images';
 // The path is the full path from the server root
 $image_dir_path = $_SERVER['DOCUMENT_ROOT'] . $image_dir;
 
@@ -39,22 +39,22 @@ switch ($action) {
         $imageCheck = checkExistingImage($imgName);
             
         if($imageCheck){
-        $message = '<p class="notice">An image by that name already exists.</p>';
+        $message = '<p class="error-notice">An image by that name already exists.</p>';
         } elseif (empty($invId) || empty($imgName)) {
-        $message = '<p class="notice">You must select a vehicle and image file for the vehicle.</p>';
+        $message = '<p class="error-notice">You must select a vehicle and image file for the vehicle.</p>';
         } else {
         // Upload the image, store the returned path to the file
         $imgPath = uploadFile('file1');
-            
+        
         // Insert the image information to the database, get the result
         $result = storeImages($imgPath, $invId, $imgName, $imgPrimary);
             
         // Set a message based on the insert result
         if ($result) {
-        $message = '<p class="notice">The upload succeeded.</p>';
-        } else {
-        $message = '<p class="notice">Sorry, the upload failed.</p>';
-        }
+            $message = '<p class="notice">The upload succeeded.</p>';
+            } else {
+            $message = '<p class="error-notice">Sorry, the upload failed.</p>';
+            }
         }
             
         // Store message to session
@@ -86,7 +86,7 @@ switch ($action) {
         if ($remove) {
         $message = "<p class='notice'>$filename was successfully deleted.</p>";
         } else {
-        $message = "<p class='notice'>$filename was NOT deleted.</p>";
+        $message = "<p class='error-notice'>$filename was NOT deleted.</p>";
         }
             
         // Store message to session
@@ -103,7 +103,7 @@ switch ($action) {
         if (count($imageArray)) {
         $imageDisplay = buildImageDisplay($imageArray);
         } else {
-        $imageDisplay = '<p class="notice">Sorry, no images could be found.</p>';
+        $imageDisplay = '<p class="error-notice">Sorry, no images could be found.</p>';
         }
             
         // Get vehicles information from database

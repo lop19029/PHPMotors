@@ -128,7 +128,7 @@ function uploadFile($name) {
         // Gets the actual file name
         $filename = $_FILES[$name]['name'];
         if (empty($filename)) {
-        return;
+        return false;
         }
         // Get the file from the temp folder on the server
         $source = $_FILES[$name]['tmp_name'];

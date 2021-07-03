@@ -82,4 +82,17 @@ function buildVehicleDetails($vehicleInfo){
 
     return $dv;
 }
+
+/* * ********************************
+*  Functions for working with images
+* ********************************* */
+// Adds "-tn" designation to file name
+function makeThumbnailName($image) {
+    $i = strrpos($image, '.');
+    $image_name = substr($image, 0, $i);
+    $ext = substr($image, $i);
+    $image = $image_name . '-tn' . $ext;
+    return $image;
+   }
+
 ?>

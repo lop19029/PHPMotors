@@ -118,4 +118,30 @@ function buildVehiclesSelect($vehicles) {
     $prodList .= '</select>';
     return $prodList;
 }
+
+// Handles the file upload process and returns the path
+// The file path is stored into the database
+function uploadFile($name) {
+    // Gets the paths, full and local directory
+    global $image_dir, $image_dir_path;
+    if (isset($_FILES[$name])) {
+        // Gets the actual file name
+        $filename = $_FILES[$name]['name'];
+        if (empty($filename)) {
+        return;
+        }
+        // Get the file from the temp folder on the server
+        $source = $_FILES[$name]['tmp_name'];
+        // Sets the new path - images folder in this directory
+        $target = $image_dir_path . '/' . $filename;
+        // Moves the file to the target folder
+        move_uploaded_file($source, $target);
+        // Send file for further processing
+        processImage($image_dir_path, $filename);
+        // Sets the path for the image for Database storage
+        $filepath = $image_dir . '/' . $filename;
+        // Returns the path where the file is stored
+        return $filepath;
+    }
+}
 ?>

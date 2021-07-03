@@ -93,6 +93,18 @@ function makeThumbnailName($image) {
     $ext = substr($image, $i);
     $image = $image_name . '-tn' . $ext;
     return $image;
-   }
+}
 
+// Build images display for image management view
+function buildImageDisplay($imageArray) {
+    $id = '<ul id="image-display">';
+    foreach ($imageArray as $image) {
+     $id .= '<li>';
+     $id .= "<img src='$image[imgPath]' title='$image[invMake] $image[invModel] image on PHP Motors.com' alt='$image[invMake] $image[invModel] image on PHP Motors.com'>";
+     $id .= "<p><a href='/CS%20340/phpmotors/uploads?action=delete&imgId=$image[imgId]&filename=$image[imgName]' title='Delete the image'>Delete $image[imgName]</a></p>";
+     $id .= '</li>';
+    }
+    $id .= '</ul>';
+    return $id;
+}
 ?>

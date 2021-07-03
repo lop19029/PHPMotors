@@ -1,0 +1,69 @@
+main{
+    margin: 5px;
+}
+form {
+    background-color: #f6f6f6;
+    border-radius: 5px;
+    border: 2px solid #3a3a3a;
+    padding: 7px;
+    width: 100%;
+}
+fieldset{
+    width: 100%;
+    border: none;
+    margin-left: -5px;
+}
+
+select{
+    border-radius: 5px;
+    font-family: 'Roboto Mono', monospace;
+    padding: 5px;
+    border: solid 1px #3a3a3a;
+    color: #3a3a3a ;
+    font-size: medium;
+    width: 100%;
+}
+
+input[type=file] {
+    font-family: 'Roboto Mono', monospace;
+    padding: 5px;
+}
+
+hr {
+    padding: 5px;
+    border:0;
+    border-top:1px solid #cdcdcd;
+    margin:0;
+    height:1px;
+}
+ul{
+    margin-right: 10px;
+    width: 100%;
+    list-style-type: none;
+}
+li img{
+    width: 100%;
+}
+
+.text-link:hover{
+    color: red;
+}
+
+
+@media only screen and (min-width: 800px) {
+
+    form{
+        width: max-content;
+    }
+    select{
+        width: max-content;
+    }
+    fieldset{
+        width: max-content;
+    }
+
+    li img{
+        width: auto;
+    }
+
+}

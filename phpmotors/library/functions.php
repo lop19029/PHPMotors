@@ -101,7 +101,7 @@ function buildImageDisplay($imageArray) {
     foreach ($imageArray as $image) {
      $id .= '<li>';
      $id .= "<img src='$image[imgPath]' title='$image[invMake] $image[invModel] image on PHP Motors.com' alt='$image[invMake] $image[invModel] image on PHP Motors.com'>";
-     $id .= "<p><a href='/CS%20340/phpmotors/uploads?action=delete&imgId=$image[imgId]&filename=$image[imgName]' title='Delete the image'>Delete $image[imgName]</a></p>";
+     $id .= "<p><a class='text-link' href='/CS%20340/phpmotors/uploads?action=delete&imgId=$image[imgId]&filename=$image[imgName]' title='Delete the image'>Delete $image[imgName]</a></p>";
      $id .= '</li>';
     }
     $id .= '</ul>';

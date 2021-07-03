@@ -48,13 +48,13 @@ h2{
     line-height: 30%;
     font-size: 0.9rem;
 }
-button{
+button, input[type=submit]{
     font-family: 'Roboto Mono', monospace;
     color: #3a3a3a;
     background-color: #003366;
     color: white;
 }
-button:hover{
+button:hover, input[type=submit]:hover{
     background-color: #a6cbeb;
     color: #3a3a3a;
 }
@@ -153,6 +153,15 @@ footer{
     text-align: center;
     font-size: x-small;
 
+}
+
+select{
+    border-radius: 5px;
+    font-family: 'Roboto Mono', monospace;
+    padding: 5px;
+    border: solid 1px #3a3a3a;
+    color: #3a3a3a ;
+    font-size: medium;
 }
 
 /*Medium viewports*/

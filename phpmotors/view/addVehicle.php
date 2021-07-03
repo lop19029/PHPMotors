@@ -68,10 +68,10 @@ $classificationList.= "</select>";
                     <textarea id="invDescription" name="invDescription" rows="2" cols="25" required><?php if(isset($invDescription)){echo"$invDescription";}?></textarea>
                     <br>
                     <label for="invImage">Image Path</label><br>
-                    <input type="text" id="invImage" name="invImage" value="/CS 340/phpmotors/images/no-image.png" <?php if(isset($invImage)){echo "value='$invImage'";}  ?> required>
+                    <input type="text" id="invImage" name="invImage" value="/CS%20340/phpmotors/images/no-image.png" <?php if(isset($invImage)){echo "value='$invImage'";}  ?> required>
                     <br>
                     <label for="invThumbnail">Thumbnail Path</label><br>
-                    <input type="text" id="invThumbnail" name="invThumbnail" value="/CS 340/phpmotors/images/no-image-tn.png" <?php if(isset($invThumbnail)){echo "value='$invThumbnail'";}  ?> required>
+                    <input type="text" id="invThumbnail" name="invThumbnail" value="/CS%20340/phpmotors/images/no-image-tn.png" <?php if(isset($invThumbnail)){echo "value='$invThumbnail'";}  ?> required>
                     <br>
                     <label for="invPrice">Price</label><br>
                     <input type="number" placeholder="100000" id="invPrice" name="invPrice" <?php if(isset($invPrice)){echo "value='$invPrice'";}  ?> required>

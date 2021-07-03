@@ -41,7 +41,7 @@ function buildVehiclesDisplay($vehicles){
     foreach ($vehicles as $vehicle) {
     $dv .= "<li>";
     $dv .= "<div class = 'inv-display-image-wrapper'>";
-    $dv .= "<a href='/CS%20340/phpmotors/vehicles/?action=vehicle-display&invId=".urlencode($vehicle['invId'])."&invMake=".urlencode($vehicle['invMake'])."&invModel=".urlencode($vehicle['invModel'])."'><img src='$vehicle[invThumbnail]' alt='Image of $vehicle[invMake] $vehicle[invModel] on phpmotors.com'></a></div>";
+    $dv .= "<a href='/CS%20340/phpmotors/vehicles/?action=vehicle-display&invId=".urlencode($vehicle['invId'])."&invMake=".urlencode($vehicle['invMake'])."&invModel=".urlencode($vehicle['invModel'])."'><img src='$vehicle[imgPath]' alt='Image of $vehicle[invMake] $vehicle[invModel] on phpmotors.com'></a></div>";
     $dv .= "<div class = 'inv-display-info-wrapper'>";
     $dv .= "<a class='text-link' href='/CS%20340/phpmotors/vehicles/?action=vehicle-display&invId=".urlencode($vehicle['invId'])."&invMake=".urlencode($vehicle['invMake'])."&invModel=".urlencode($vehicle['invModel'])."'><h2>$vehicle[invMake] $vehicle[invModel]</h2></a>";
     $dv .= "<span>$".number_format($vehicle['invPrice'])."</span></div>";
@@ -53,7 +53,6 @@ function buildVehiclesDisplay($vehicles){
 
 function buildVehicleDetails($vehicleInfo){
     $dv = "<div class='vehicle-display-wrapper'>";
-
     $dv .= "<div class='display-image'>";
     $dv .= "<img src='$vehicleInfo[invImage]' alt='Image of $vehicleInfo[invMake] $vehicleInfo[invModel] on phpmotors.com'>";
     $dv .= "</div>";

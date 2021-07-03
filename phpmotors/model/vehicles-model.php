@@ -142,13 +142,25 @@ function deleteItem($invId) {
 //This function gets a list of cars inside a classification
 function getVehiclesByClassification($classificationName){
     $db = phpmotorsConnect();
-    $sql = 'SELECT * FROM inventory WHERE classificationId IN (SELECT classificationId FROM carclassification WHERE classificationName = :classificationName)';
+    $sql = "SELECT inventory.invMake, inventory.invModel, inventory.invPrice, inventory.invId, images.imgPath FROM images JOIN inventory ON images.invId = inventory.invId WHERE classificationId IN (SELECT classificationId FROM carclassification WHERE classificationName = :classificationName) AND imgPath LIKE '%-tn%' AND imgPrimary LIKE '1'";
     $stmt = $db->prepare($sql);
     $stmt->bindValue(':classificationName', $classificationName, PDO::PARAM_STR);
     $stmt->execute();
     $vehicles = $stmt->fetchAll(PDO::FETCH_ASSOC);
     $stmt->closeCursor();
     return $vehicles;
+}
+
+//This function gets the primary thumbnail of the cars inside a classification
+function getVehiclesThumbnails($classificationName){
+    $db = phpmotorsConnect();
+    $sql = "SELECT imgId, imgPath, imgName, imgDate, inventory.invId, invMake, invModel FROM images JOIN inventory ON images.invId = inventory.invId WHERE classificationId IN (SELECT classificationId FROM carclassification WHERE classificationName = :classificationName) AND imgPath LIKE '%-tn%' AND imgPrimary LIKE '1'; ";
+    $stmt = $db->prepare($sql);
+    $stmt->bindValue(':classificationName', $classificationName, PDO::PARAM_STR);
+    $stmt->execute();
+    $vehiclesThumbs = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $stmt->closeCursor();
+    return $vehiclesThumbs;
 }
 
 //This function will obtain about all vehicles in inventory

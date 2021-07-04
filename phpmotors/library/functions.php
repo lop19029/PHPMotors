@@ -51,8 +51,9 @@ function buildVehiclesDisplay($vehicles){
     return $dv;
 }
 
-function buildVehicleDetails($vehicleInfo){
+function buildVehicleDetails($vehicleInfo, $thumbImages){
     $dv = "<div class='vehicle-display-wrapper'>";
+    
     $dv .= "<div class='display-image'>";
     $dv .= "<img src='$vehicleInfo[imgPath]' alt='Image of $vehicleInfo[invMake] $vehicleInfo[invModel] on phpmotors.com'>";
     $dv .= "</div>";
@@ -76,6 +77,15 @@ function buildVehicleDetails($vehicleInfo){
     $dv .= "</div>";
 
     $dv .= "</div>";
+
+    $dv .= "<div class='display-thumbs-wrapper'>";
+    $dv .= '<ul id="display-thumbs">';
+    foreach ($thumbImages as $thumbImage){
+    $dv .= "<li>";
+    $dv.= "<img src='$thumbImage[imgPath]' alt='Thumbnail image of $vehicleInfo[invMake] $vehicleInfo[invModel] on phpmotors.com'>";
+    $dv .= '</li>';
+    }
+    $dv .= "</ul></div>";
 
     $dv .= "</div>";
 

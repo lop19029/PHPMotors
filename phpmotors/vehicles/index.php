@@ -10,6 +10,8 @@ require_once "../library/connections.php";
 require_once "../model/main-model.php";
 //Get the Vehicles model
 require_once "../model/vehicles-model.php";
+//Get the Uploads model
+require_once "../model/uploads-model.php";
 //Get functions library
 require_once "../library/functions.php";
 
@@ -189,11 +191,13 @@ switch ($action) {
         $invModel = filter_input(INPUT_GET, 'invModel', FILTER_SANITIZE_STRING);
 
         $vehicleInfo = getVehicleInfo($invId);
-        if(!count($vehicleInfo)){
+        $thumbImages = getThumbImages($invId);
+
+        if(!count($vehicleInfo) || !count($thumbImages)){
             $message = "<p class='error-notice'>Sorry, no info could be found.</p>";
         }
         else {
-            $vehicleDetails = buildVehicleDetails($vehicleInfo);
+            $vehicleDetails = buildVehicleDetails($vehicleInfo, $thumbImages);
         }
         include '../view/vehicle-detail.php';
         break;

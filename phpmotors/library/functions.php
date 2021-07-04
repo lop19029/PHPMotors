@@ -79,6 +79,7 @@ function buildVehicleDetails($vehicleInfo, $thumbImages){
     $dv .= "</div>";
 
     $dv .= "<div class='display-thumbs-wrapper'>";
+    $dv .= "<h3 id = 'thumbsTitle'> More Images <h3>";
     $dv .= '<ul id="display-thumbs">';
     foreach ($thumbImages as $thumbImage){
     $dv .= "<li>";

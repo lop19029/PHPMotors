@@ -188,7 +188,7 @@ switch ($action) {
         $invMake = filter_input(INPUT_GET, 'invMake', FILTER_SANITIZE_STRING);
         $invModel = filter_input(INPUT_GET, 'invModel', FILTER_SANITIZE_STRING);
 
-        $vehicleInfo = getInvItemInfo($invId);
+        $vehicleInfo = getVehicleInfo($invId);
         if(!count($vehicleInfo)){
             $message = "<p class='error-notice'>Sorry, no info could be found.</p>";
         }

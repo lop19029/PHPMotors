@@ -7,6 +7,7 @@
     //Requirements
     require_once "../library/connections.php";
     require_once "../model/main-model.php";
+    require_once "../model/reviews-model.php";
     require_once "../library/functions.php";
 
     //Get the array of classifications
@@ -44,7 +45,7 @@
         default:
             
             break;
-            
+
     }
 
 

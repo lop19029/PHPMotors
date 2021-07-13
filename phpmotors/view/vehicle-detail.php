@@ -28,7 +28,19 @@
                     if(isset($vehicleDetails)){
                         echo $vehicleDetails;
                     } 
+                ?>
+                <div class="reviews-wrapper">
+                    <h2>Customer reviews</h2>
+                    <?php
+                        //Display display review form
+                        echo $reviewForm;
+
+                        //Display reviews section for this car
+                        echo $vehicleReviews;
                     ?>
+                </div>
+
+
             </main>
             <?php require $_SERVER['DOCUMENT_ROOT'] . '/CS 340/phpmotors/snippets/footer.php'; ?>
         </div>

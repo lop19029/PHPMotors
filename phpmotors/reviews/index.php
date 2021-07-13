@@ -29,8 +29,8 @@
             $clientId = trim(filter_input(INPUT_POST, 'clientId', FILTER_SANITIZE_NUMBER_INT));
             
             // Check for missing data
-            if(empty($reviewText) || empty($invId) || empty($clientId)) {
-                $reviewMessage = "<p class='error-notice'>Please provide information for all empty form fields.</p>";
+            if(empty($reviewText)) {
+                $reviewMessage = "<p class='error-notice'>Please write your review in the blank field below.</p>";
                 include '../view/vehicle-detail.php';
                 exit; 
             }

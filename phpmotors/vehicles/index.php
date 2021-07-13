@@ -189,7 +189,7 @@ switch ($action) {
         $invId = filter_input(INPUT_GET, 'invId', FILTER_VALIDATE_INT);
         $invMake = filter_input(INPUT_GET, 'invMake', FILTER_SANITIZE_STRING);
         $invModel = filter_input(INPUT_GET, 'invModel', FILTER_SANITIZE_STRING);
-
+        
         $vehicleInfo = getVehicleInfo($invId);
         $thumbImages = getThumbImages($invId);
 
@@ -199,8 +199,20 @@ switch ($action) {
         else {
             $vehicleDetails = buildVehicleDetails($vehicleInfo, $thumbImages);
         }
+
+        //Treat user info if logged in
+        if(isset($_SESSION['loggedin'])){
+            $clientId = filter_input(INPUT_GET, 'clientId', FILTER_VALIDATE_INT);
+            $clientFirstname = filter_input(INPUT_GET, 'clientFirstname', FILTER_SANITIZE_STRING);
+            $clientLastname = filter_input(INPUT_GET, 'clientLastname', FILTER_SANITIZE_STRING);
+
+            $clientScreenName = generateClientScreenName($clientFirstname, $clientLastname);
+            $reviewForm = buildReviewsForm($clientScreenName, $clientId, $invId, $vehicleInfo);
+        }
+
         include '../view/vehicle-detail.php';
         break;
+
     default:
 
         $classificationList = buildClassificationList($classifications);

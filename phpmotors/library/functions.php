@@ -41,9 +41,25 @@ function buildVehiclesDisplay($vehicles){
     foreach ($vehicles as $vehicle) {
     $dv .= "<li>";
     $dv .= "<div class = 'inv-display-image-wrapper'>";
-    $dv .= "<a href='/CS%20340/phpmotors/vehicles/?action=vehicle-display&invId=".urlencode($vehicle['invId'])."&invMake=".urlencode($vehicle['invMake'])."&invModel=".urlencode($vehicle['invModel'])."'><img src='$vehicle[imgPath]' alt='Image of $vehicle[invMake] $vehicle[invModel] on phpmotors.com'></a></div>";
+    $dv .= "<a href='/CS%20340/phpmotors/vehicles/?action=vehicle-display&invId=".urlencode($vehicle['invId'])."&invMake=".urlencode($vehicle['invMake'])."&invModel=".urlencode($vehicle['invModel']);
+    //Pass client info if logged in
+    if(isset($_SESSION['loggedin'])){
+        $dv.= "&clientId=".urlencode($_SESSION['clientData']['clientId']);
+        $dv.= "&clientFirstname=".urlencode($_SESSION['clientData']['clientFirstname']);
+        $dv.= "&clientLastname=".urlencode($_SESSION['clientData']['clientLastname']);
+    }
+    $dv.= "'><img src='$vehicle[imgPath]' alt='Image of $vehicle[invMake] $vehicle[invModel] on phpmotors.com'></a></div>";
     $dv .= "<div class = 'inv-display-info-wrapper'>";
-    $dv .= "<a class='text-link' href='/CS%20340/phpmotors/vehicles/?action=vehicle-display&invId=".urlencode($vehicle['invId'])."&invMake=".urlencode($vehicle['invMake'])."&invModel=".urlencode($vehicle['invModel'])."'><h2>$vehicle[invMake] $vehicle[invModel]</h2></a>";
+    $dv .= "<a class='text-link' href='/CS%20340/phpmotors/vehicles/?action=vehicle-display&invId=".urlencode($vehicle['invId'])."&invMake=".urlencode($vehicle['invMake'])."&invModel=".urlencode($vehicle['invModel']);
+    
+    //Pass client info if logged in
+    if(isset($_SESSION['loggedin'])){
+        $dv.= "&clientId=".urlencode($_SESSION['clientData']['clientId']);
+        $dv.= "&clientFirstname=".urlencode($_SESSION['clientData']['clientFirstname']);
+        $dv.= "&clientLastname=".urlencode($_SESSION['clientData']['clientLastname']);
+    }
+    
+    $dv.= "'><h2>$vehicle[invMake] $vehicle[invModel]</h2></a>";
     $dv .= "<span>$".number_format($vehicle['invPrice'])."</span></div>";
     $dv .= '</li>';
     }
@@ -93,6 +109,43 @@ function buildVehicleDetails($vehicleInfo, $thumbImages){
 
 
     return $dv;
+}
+
+function buildReviewsForm($clientScreenName, $clientId, $invId, $vehicleInfo){
+    $rf = "<div class='review-form-wrapper'>";
+    $rf.= "<form action='/CS%20340/phpmotors/reviews/' method='post'>";
+    $rf.= "<h3>Write a review for the $vehicleInfo[invMake] $vehicleInfo[invModel]</h3>";
+    $rf.= "<label for='clientScreenName'>Screen Name:</label><br>";
+    $rf.= "<input type='text' name='clientScreenName' value='$clientScreenName' readonly><br><br>";
+    $rf.= "<label for='reviewText'>Review:</label><br>";
+    $rf.= "<textarea id='reviewText' name='reviewText' required></textarea><br>";
+    $rf.= "<input type='submit' class='regbtn' value='Submit Review'>";
+
+    //Hidden inputs
+    $rf.= "<input type='hidden' class='invId' value='$invId'>";
+    $rf.= "<input type='hidden' name='clientId' value='$clientId'>";
+    $rf.= "<input type='hidden' name='action' value='addReview'>";
+
+    $rf.= "</form>";
+    $rf.= "</div>";
+
+    return $rf;
+}
+
+function generateClientScreenName($clientFirstname, $clientLastname){
+    //First letter of the First name
+    $firstNameInicial = substr($clientFirstname,0,1);
+
+    //Get the first last name in case of multiple last names
+    $lastName = $clientLastname;
+    $arr = explode(' ', trim($lastName));
+
+    if (isset($arr[0])){
+        $firstLastName = $arr[0];
+    }
+    $lastNameTreated = ucfirst(strtolower($firstLastName));
+    
+    return $clientScreenName = $firstNameInicial.$lastNameTreated;
 }
 
 /* * ********************************

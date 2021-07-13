@@ -1,4 +1,12 @@
-<!DOCTYPE html>
+<?php
+//Check if the user has logged in
+if(!isset($_SESSION['loggedin'])){
+    unset ($reviewForm);
+    $loginToReview = "<p>You must <a class='text-link' href='/CS%20340/phpmotors/accounts/?action=Login'>login</a> to write a review.";
+}
+
+
+?><!DOCTYPE html>
 <html lang="en-US">
     <head>
         <meta charset = "UTF-8">
@@ -34,13 +42,25 @@
                     <?php
                         if(isset($reviewMessage)){
                             echo $reviewMessage;
-                        } 
-                        //Display display review form
-                        echo $reviewForm;
-
-                        //Display reviews section for this car
-                        echo $vehicleReviews;
-                    ?>
+                        } ?>
+                    
+                    <div class="reviews-form-wrapper">
+                        <?php
+                            //Display reviews form for logged clients
+                            if(isset($reviewForm)){
+                                echo $reviewForm;
+                            }
+                            else {
+                                echo $loginToReview;
+                            }
+                        ?>
+                    </div>
+                    <div class="reviews-content-wrapper">
+                        <?php
+                            //Display reviews section for this car
+                            echo $vehicleReviews;
+                        ?>
+                    </div>
                 </div>
 
 

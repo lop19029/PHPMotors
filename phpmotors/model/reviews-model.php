@@ -3,8 +3,24 @@
 //This is the reviews model
 
 //This function inserts a review into the database
-function insertReview(){
-
+function insertReview($reviewText, $invId, $clientId){
+    // Create a connection object using the phpmotors connection function
+    $db = phpmotorsConnect(); 
+    $sql = 'INSERT INTO reviews (reviewText, invId, clientId)
+         VALUES (:reviewText, :invId, :clientId)';
+    $stmt = $db->prepare($sql);
+    // Replace the placeholders in the SQL
+    $stmt->bindValue(':reviewText', $reviewText, PDO::PARAM_STR);
+    $stmt->bindValue(':invId', $invId, PDO::PARAM_INT); 
+    $stmt->bindValue(':clientId', $clientId, PDO::PARAM_INT); 
+    //Insert data
+    $stmt->execute();
+    // Ask how many rows changed as a result of our insert
+    $rowsChanged = $stmt->rowCount();
+    // Close the database interaction
+    $stmt->closeCursor();
+    // Return the indication of success (rows changed)
+    return $rowsChanged;
 }
 
 //This function returns reviews from an specific inventory item

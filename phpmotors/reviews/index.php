@@ -23,7 +23,33 @@
 
     switch ($action) {
         case 'addReview':
+            // Filter and store the data
+            $reviewText = trim(filter_input(INPUT_POST, 'reviewText', FILTER_SANITIZE_STRING));
+            $invId = trim(filter_input(INPUT_POST, 'invId', FILTER_SANITIZE_NUMBER_INT));
+            $clientId = trim(filter_input(INPUT_POST, 'clientId', FILTER_SANITIZE_NUMBER_INT));
             
+            // Check for missing data
+            if(empty($reviewText) || empty($invId) || empty($clientId)) {
+                $reviewMessage = "<p class='error-notice'>Please provide information for all empty form fields.</p>";
+                include '../view/vehicle-detail.php';
+                exit; 
+            }
+
+            //Send the data to the model
+            $addReviewOutcome = insertReview($reviewText, $invId, $clientId);
+
+            //Check and report the result
+            if($addReviewOutcome === 1){
+                $reviewMessage = "<p class='notice'>Thanks for your review!</p>";
+                header('location: /CS 340/phpmotors/view/vehicle-detail.php');
+                exit;
+            } 
+            else {
+                $reviewMessage = "<p class='error-notice' >Sorry, we couldn't upload your review. Please try again</p>";
+                include '../view/vehicle-detail.php';
+                exit;
+            }
+
             break;
 
         case 'displayEditReview':

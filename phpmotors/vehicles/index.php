@@ -38,7 +38,7 @@ switch ($action) {
         $classificationName = trim(filter_input(INPUT_POST, 'classificationName', FILTER_SANITIZE_STRING));
         // Check for missing data
         if(empty($classificationName)){
-            $message = '<p>Please enter a new Classification Name.</p>';
+            $message = "<p class='error-notice'>Please enter a new Classification Name.</p>";
             include '../view/addClassification.php';
             exit; 
         }
@@ -52,7 +52,7 @@ switch ($action) {
             exit;
         } 
         else {
-            $message = "<p>Sorry, but the registration of $classificationName failed. Please try again.</p>";
+            $message = "<p class='error-notice'>Sorry, but the registration of $classificationName failed. Please try again.</p>";
             include '../view/addClassification.php';
             exit;
         }
@@ -73,7 +73,7 @@ switch ($action) {
 
         // Check for missing data
         if(empty($invMake) || empty($invModel) || empty($invDescription) || empty($invImage) || empty($invThumbnail) || empty($invPrice) || empty($invStock) || empty($invColor) || empty($classificationId)) {
-            $message = '<p>Please provide information for all empty form fields.</p>';
+            $message = "<p class='error-notice'>Please provide information for all empty form fields.</p>";
             include '../view/addVehicle.php';
             exit; 
         }
@@ -83,13 +83,13 @@ switch ($action) {
         
         //Check and report the result
         if($regCarOutcome === 1){
-            $message = "<p>Congratulations! Your $invMake $invModel was succesfully registered.</p>";
+            $message = "<p class='notice'>The $invMake $invModel was succesfully registered.</p>";
                 $_SESSION['message'] = $message;
                 header('location: /CS 340/phpmotors/vehicles/');
                 exit;
         } 
         else {
-            $message = "<p>Sorry, but the registration of the $invMake $invModel failed. Please try again.</p>";
+            $message = "<p class='error-notice'>Sorry, but the registration of the $invMake $invModel failed. Please try again.</p>";
             include '../view/addVehicle.php';
             exit;
         }
@@ -107,7 +107,7 @@ switch ($action) {
         $invId = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
         $invInfo = getInvItemInfo($invId);
         if(count($invInfo)<1){
-            $message = 'Sorry, no vehicle information could be found.';
+            $message = "<p class='error-notice'>Sorry, no vehicle information could be found.</p>";
         }
         include '../view/vehicle-update.php';
         exit;
@@ -126,7 +126,7 @@ switch ($action) {
         $invId = filter_input(INPUT_POST, 'invId', FILTER_SANITIZE_NUMBER_INT);
         
         if (empty($classificationId) || empty($invMake) || empty($invModel) || empty($invDescription) || empty($invImage) || empty($invThumbnail) || empty($invPrice) || empty($invStock) || empty($invColor)) {
-            $message = '<p>Please complete all information for the item! Double check the classification of the item.</p>';
+            $message = "<p class='error-notice'>Please complete all information for the item! Double check the classification of the item.</p>";
             include '../view/vehicle-update.php';
             exit;
         }

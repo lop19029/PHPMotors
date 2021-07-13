@@ -32,6 +32,9 @@
                 <div class="reviews-wrapper">
                     <h2>Customer reviews</h2>
                     <?php
+                        if(isset($reviewMessage)){
+                            echo $reviewMessage;
+                        } 
                         //Display display review form
                         echo $reviewForm;
 

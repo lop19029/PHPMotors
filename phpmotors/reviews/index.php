@@ -74,7 +74,7 @@
         case 'updateReview':
             $reviewId = trim(filter_input(INPUT_POST, 'reviewId', FILTER_SANITIZE_NUMBER_INT));
             $reviewText = trim(filter_input(INPUT_POST, 'reviewText', FILTER_SANITIZE_STRING)); 
-            $invId=trim(filter_input(INPUT_GET, 'reviewId', FILTER_SANITIZE_NUMBER_INT));
+            $invId=trim(filter_input(INPUT_POST, 'invId', FILTER_SANITIZE_NUMBER_INT));
 
             // Check for missing data
             if(empty($reviewText)) {

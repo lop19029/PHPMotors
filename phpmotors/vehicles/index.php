@@ -9,9 +9,13 @@ require_once "../library/connections.php";
 //Get the PHP Motors model for use as needed
 require_once "../model/main-model.php";
 //Get the Vehicles model
+require_once "../model/accounts-model.php";
+//Get the Vehicles model
 require_once "../model/vehicles-model.php";
 //Get the Uploads model
 require_once "../model/uploads-model.php";
+//Get the Reviews model
+require_once "../model/reviews-model.php";
 //Get functions library
 require_once "../library/functions.php";
 
@@ -209,6 +213,19 @@ switch ($action) {
             $clientScreenName = generateClientScreenName($clientFirstname, $clientLastname);
             $reviewForm = buildReviewsForm($clientScreenName, $clientId, $invId, $vehicleInfo);
         }
+
+        //Generate reviews display for this vehicle
+        $reviewsArr = getInvReviews($invId);
+        $writersNames = [];
+        foreach($reviewsArr as $review){
+            $clientId = $review['clientId'];
+            $clientInfo = getClientData($clientId);
+            $clientFirstname = $clientInfo['clientFirstname'];
+            $clientLastname = $clientInfo['clientLastname'];
+            $clientScreenName = generateClientScreenName($clientFirstname, $clientLastname);
+            $writersNames[] = $clientScreenName;
+        }
+        $vehicleReviews = buildVehicleReviews($reviewsArr, $writersNames); 
 
         include '../view/vehicle-detail.php';
         break;

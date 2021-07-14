@@ -25,8 +25,15 @@ function insertReview($reviewText, $reviewDate, $invId, $clientId){
 }
 
 //This function returns reviews from an specific inventory item
-function getInvReviews(){
-
+function getInvReviews($invId){
+    $db = phpmotorsConnect(); 
+    $sql = ' SELECT * FROM reviews WHERE invId = :invId'; 
+    $stmt = $db->prepare($sql); 
+    $stmt->bindValue(':invId', $invId, PDO::PARAM_INT); 
+    $stmt->execute(); 
+    $reviewsArr = $stmt->fetchAll(PDO::FETCH_ASSOC); 
+    $stmt->closeCursor(); 
+    return $reviewsArr; 
 }
 
 //This function returns the reviews written by an specific client

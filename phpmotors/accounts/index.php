@@ -267,9 +267,7 @@
                 $reviewedCarName = $vehicleInfo['invMake']." ".$vehicleInfo['invModel'];
                 $reviewedCarsNames[] = $reviewedCarName; 
             }
-            echo var_dump($clientReviews);
-            echo var_dump($reviewedCarsNames);
-            exit;
+
             $userReviewsTable = buildUserReviewsTable($clientReviews, $reviewedCarsNames);
 
             //Allow admin functionalities for clients level 2 or 3

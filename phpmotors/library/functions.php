@@ -169,6 +169,22 @@ function buildVehicleReviews($reviewsArr, $writersScreenNames) {
     return $vr;
 }
 
+function buildUserReviewsTable($clientReviews, $reviewedCarsNames){
+    $rt = '<table><thead>';
+    $rt.= '<tr><th>Vehicle Name</th><th>Review</th><td>&nbsp;</td><td>&nbsp;</td></tr>'; 
+    $rt.= '</thead><tbody>';
+    $counter = 0;
+    foreach($clientReviews as $review){
+        $rt.="<tr><td>$reviewedCarsNames[$counter]</td>";
+        $rt.="<td>$review[reviewText]</td>";
+        $rt.= "<td><a class='modify-link' href='/CS%20340/phpmotors/reviews?action=displayEditReview&reviewId=$review[reviewId]' title='Click to modify'>Modify</a></td>";
+        $rt.= "<td><a class='delete-link' href='/CS%20340/phpmotors/reviews?action=displayDeleteReview&reviewId=$review[reviewId]' title='Click to delete'>Delete</a></td></tr>";
+        $counter++;
+    }
+    $rt.= '</tbody></table>';
+    return $rt;
+}
+
 /* * ********************************
 *  Functions for working with images
 * ********************************* */

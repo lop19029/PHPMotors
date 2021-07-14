@@ -22,4 +22,12 @@ input[type=text], input[type=email], input[type=number], input[type=password] {
     border: solid 1px #3a3a3a;
     font-size: medium;
 }
+.delete-link{
+    color:#e32227;
+}
+
+.modify-link{
+    color:blue;
+
+}
 

@@ -7,6 +7,7 @@
     //Requirements
     require_once "../library/connections.php";
     require_once "../model/main-model.php";
+    require_once "../model/accounts-model.php";
     require_once "../model/reviews-model.php";
     require_once "../model/vehicles-model.php";
     require_once "../model/uploads-model.php";
@@ -31,18 +32,6 @@
             $clientId = trim(filter_input(INPUT_POST, 'clientId', FILTER_SANITIZE_NUMBER_INT));
             $reviewDate = date("Y-m-d H:i:s", strtotime("now"));
             
-            //Rebuild view
-            $vehicleInfo = getVehicleInfo($invId);
-            $invMake = $vehicleInfo['invMake'];
-            $invModel = $vehicleInfo['invModel'];
-            $thumbImages = getThumbImages($invId);
-            $vehicleDetails = buildVehicleDetails($vehicleInfo, $thumbImages);
-            $clientId = $_SESSION['clientData']['clientId'];
-            $clientFirstname = $_SESSION['clientData']['clientFirstname'];
-            $clientLastname = $_SESSION['clientData']['clientLastname'];
-            $clientScreenName = generateClientScreenName($clientFirstname, $clientLastname);
-            $reviewForm = buildReviewsForm($clientScreenName, $clientId, $invId, $vehicleInfo);
-
             // Check for missing data
             if(empty($reviewText)) {
                 $reviewMessage = "<p class='error-notice'>Please write your review in the blank field below.</p>";
@@ -56,7 +45,8 @@
             //Check and report the result
             if($insertReviewOutcome === 1){
                 $reviewMessage = "<p class='notice'>Thanks for your review!</p>";
-                include '../view/vehicle-detail.php';
+                $_SESSION['message'] = $reviewMessage;
+                header("location: /CS 340/phpmotors/reviews/?invId=$invId");
                 exit;
             } 
             else {
@@ -84,7 +74,32 @@
             break;
 
         default:
-            
+            $invId = trim(filter_input(INPUT_GET, 'invId', FILTER_SANITIZE_NUMBER_INT));
+            //Rebuild view
+            $vehicleInfo = getVehicleInfo($invId);
+            $invMake = $vehicleInfo['invMake'];
+            $invModel = $vehicleInfo['invModel'];
+            $thumbImages = getThumbImages($invId);
+            $vehicleDetails = buildVehicleDetails($vehicleInfo, $thumbImages);
+            $clientId = $_SESSION['clientData']['clientId'];
+            $clientFirstname = $_SESSION['clientData']['clientFirstname'];
+            $clientLastname = $_SESSION['clientData']['clientLastname'];
+            $clientScreenName = generateClientScreenName($clientFirstname, $clientLastname);
+            $reviewForm = buildReviewsForm($clientScreenName, $clientId, $invId, $vehicleInfo);
+            //Generate reviews display for this vehicle
+            $reviewsArr = getInvReviews($invId);
+            $writersScreenNames = [];
+            foreach($reviewsArr as $review){
+                $clientId = $review['clientId'];
+                $clientInfo = getClientData($clientId);
+                $clientFirstname = $clientInfo['clientFirstname'];
+                $clientLastname = $clientInfo['clientLastname'];
+                $clientScreenName = generateClientScreenName($clientFirstname, $clientLastname);
+                $writersScreenNames[] = $clientScreenName;
+            }
+
+            $vehicleReviews = buildVehicleReviews($reviewsArr, $writersScreenNames); 
+            include '../view/vehicle-detail.php';
             break;
 
     }

@@ -25,10 +25,9 @@ if(!$_SESSION['loggedin']){
             <main>
                 
                 <div><h1>Manage Review</h1></div>
-                <?php
-                    if(isset($message)) {
-                        echo $message;
-                    }
+                <?php if (isset($_SESSION['message'])) {
+                        echo $_SESSION['message'];
+                    } 
                 ?>
                 <form method="post" action="/CS%20340/phpmotors/reviews/">
                     <h2>Update review for <?php echo $vehicleInfo['invMake'], " ", $vehicleInfo['invModel'];?></h2>
@@ -40,6 +39,8 @@ if(!$_SESSION['loggedin']){
                     <!-- Add the action name - value pair -->
                     <input type="hidden" name="action" value="updateReview">
                     <input type="hidden" name="reviewId" value="<?php if(isset($reviewInfo)){ echo $reviewInfo[0]['reviewId']; } ?>">
+                    <input type="hidden" name="invId" value="<?php if(isset($vehicleInfo)){ echo $vehicleInfo['invId']; } ?>">
+
                     <br>
                 </form>
             </main>
@@ -47,3 +48,4 @@ if(!$_SESSION['loggedin']){
         </div>
     </body>
 </html>
+<?php unset($_SESSION['message']); ?>

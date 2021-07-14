@@ -67,13 +67,38 @@
             $reviewInfo = getReviewById($reviewId);
             //Get vehicles info
             $vehicleInfo = getInvItemInfo($invId);
-            
-            
-
-            include '../view/modify-review.php';
+            include '../view/review-update.php';
             break;
 
         case 'updateReview':
+            $reviewId = trim(filter_input(INPUT_POST, 'reviewId', FILTER_SANITIZE_NUMBER_INT));
+            $reviewText = trim(filter_input(INPUT_POST, 'reviewText', FILTER_SANITIZE_STRING)); 
+            $invId=trim(filter_input(INPUT_GET, 'reviewId', FILTER_SANITIZE_NUMBER_INT));
+
+            // Check for missing data
+            if(empty($reviewText)) {
+                $reviewMessage = "<p class='error-notice'>Sorry, you can't submit an empty review.</p>";
+                $_SESSION['message'] = $reviewMessage;
+                header("location: /CS 340/phpmotors/reviews/?action=displayEditReview&reviewId=$reviewId&invId=$invId");
+                exit;
+            }
+
+            //Ask model to update the review
+            $updateReviewOutcome = updateReviewById($reviewId, $reviewText);
+            
+            //Check and report the result
+            if($updateReviewOutcome === 1){
+                $reviewMessage = "<p class='notice'>Your review was succesfully updated.</p>";
+                $_SESSION['message'] = $reviewMessage;
+                header("location: /CS 340/phpmotors/accounts/");
+                exit;
+            } 
+            else {
+                $reviewMessage = "<p class='error-notice' >Sorry, we couldn't update your review. Please try again</p>";
+                $_SESSION['message'] = $reviewMessage;
+                header("location: /CS 340/phpmotors/accounts/");
+                exit;
+            }
 
             break;
 

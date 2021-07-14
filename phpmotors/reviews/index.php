@@ -34,8 +34,9 @@
             
             // Check for missing data
             if(empty($reviewText)) {
-                $reviewMessage = "<p class='error-notice'>Please write your review in the blank field below.</p>";
-                include '../view/vehicle-detail.php';
+                $reviewMessage = "<p class='error-notice'>Sorry, you can't submit an empty review.</p>";
+                $_SESSION['message'] = $reviewMessage;
+                header("location: /CS 340/phpmotors/reviews/?invId=$invId");
                 exit; 
             }
 
@@ -51,7 +52,8 @@
             } 
             else {
                 $reviewMessage = "<p class='error-notice' >Sorry, we couldn't upload your review. Please try again</p>";
-                include '../view/vehicle-detail.php';
+                $_SESSION['message'] = $reviewMessage;
+                header("location: /CS 340/phpmotors/reviews/?invId=$invId");
                 exit;
             }
 

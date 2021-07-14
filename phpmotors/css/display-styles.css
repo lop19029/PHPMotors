@@ -89,7 +89,11 @@ input[type="submit"]{
     font-weight: bold;
     font-style: italic;
     text-align: center;
+}
 
+.text-link{
+    color: blue;
+    text-decoration: underline;
 }
 
 /*Large Viewports*/

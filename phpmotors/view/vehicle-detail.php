@@ -24,14 +24,6 @@ if(!isset($_SESSION['loggedin'])){
             <main>
                 <div><h1><?php echo $invMake." ".$invModel; ?></h1></div> 
                 <?php
-                    //Check and display messages if exist
-                    if (isset($_SESSION['message'])) {
-                        echo $_SESSION['message'];
-                    } 
-                    elseif (isset($message)) { 
-                    echo $message; 
-                    }
-                    
                     //Display cars from classification
                     if(isset($vehicleDetails)){
                         echo $vehicleDetails;
@@ -40,9 +32,13 @@ if(!isset($_SESSION['loggedin'])){
                 <div class="reviews-wrapper">
                     <h2>Customer reviews</h2>
                     <?php
-                        if(isset($reviewMessage)){
-                            echo $reviewMessage;
+                        //Check and display messages if exist
+                        if (isset($_SESSION['message'])) {
+                            echo $_SESSION['message'];
                         } 
+                        elseif (isset($message)) { 
+                        echo $message; 
+                        }
 
                         //Display reviews form for logged clients
                         if(isset($reviewForm)){

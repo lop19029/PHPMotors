@@ -235,11 +235,21 @@ select{
 }
 
 p.error-notice{
-    color: red;
+    background-color: #e32227;
+    color: white;
+    font-weight: bold;
+    padding: 10px;
+    border: 1px solid rgb(230, 224, 224);
+    border-radius: 5px;
 }
 
 p.notice{
-    color: green;
+    background-color: #06c258;
+    color: white;
+    font-weight: bold;
+    padding: 10px;
+    border: 1px solid rgb(230, 224, 224);
+    border-radius: 5px;
 }
 .error-message {
     margin-left: 5px;

@@ -116,7 +116,7 @@ function buildReviewsForm($clientScreenName, $clientId, $invId, $vehicleInfo){
     $rf.= "<form action='/CS%20340/phpmotors/reviews/' method='post'>";
     $rf.= "<h3>Write a review for the $vehicleInfo[invMake] $vehicleInfo[invModel]</h3>";
     $rf.= "<label for='clientScreenName'>Screen Name:</label><br>";
-    $rf.= "<input type='text' name='clientScreenName' value='$clientScreenName' readonly><br><br>";
+    $rf.= "<input id ='clientScreenName' type='text' name='clientScreenName' value='$clientScreenName' readonly><br><br>";
     $rf.= "<label for='reviewText'>Review:</label><br>";
     $rf.= "<textarea id='reviewText' name='reviewText' required></textarea><br>";
     $rf.= "<input type='submit' class='regbtn' value='Submit Review'>";

@@ -30,6 +30,68 @@ li img{
     max-width: 80%;
 }
 
+#clientScreenName{
+    font-weight: bold;
+}
+.review-form-wrapper {
+    background-color: #f6f6f6;
+    border-radius: 5px;
+    border: 2px solid #3a3a3a;
+    padding: 7px;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+input[type="text"], textarea{
+    font-family: 'Roboto Mono', monospace;
+    font-size: medium;
+    padding: 5px;
+}
+input[type="text"]{
+    outline: none;
+}
+textarea {
+    width: 100%;
+    resize: none;
+    height: 100px;
+}
+input[type="submit"]{
+    font-size: large;
+    padding: 5px;
+}
+
+.review-display-wrapper{
+    margin: 5px;
+}
+.reviews-display {
+    background-color: #95c1e7;
+    border-radius: 5px;
+}
+.review-wrapper{
+    padding: 5px;
+}
+.review-wrapper textarea{
+    font-style: italic;
+    border: none;
+    outline: none;
+    height: auto;
+    margin-left: 5px;
+    width: 95%;
+    border-radius: 5px;
+}
+.review-wrapper label{
+    margin: 5px;
+}
+#no-reviews-text{
+    background-color: #95c1e7;
+    border-radius: 5px;
+    padding: 10px;
+    font-weight: bold;
+    font-style: italic;
+    text-align: center;
+
+}
+
 /*Large Viewports*/
 @media only screen and (min-width: 800px) {
     .vehicle-display-wrapper{
@@ -64,5 +126,23 @@ li img{
         transform: scale(1.3);
         transition: 0.3s ease-in-out;
     }
+
+    .reviews-wrapper {
+        display: grid;
+        padding: 10px;
+        grid-template-columns: auto repeat(auto, 5);
+    }
+
+    .review-form-wrapper {
+        width: max-content;
+        grid-column: 1/2;
+        margin-left: 5px;
+    }
+
+    .review-display-wrapper{
+        grid-column: 2/6;
+    }
+
+    
 
 }

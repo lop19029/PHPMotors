@@ -61,12 +61,13 @@
 
         case 'displayEditReview':
             $reviewId = trim(filter_input(INPUT_GET, 'reviewId', FILTER_SANITIZE_NUMBER_INT));
-            $invId=trim(filter_input(INPUT_GET, 'reviewId', FILTER_SANITIZE_NUMBER_INT));
+            $invId=trim(filter_input(INPUT_GET, 'invId', FILTER_SANITIZE_NUMBER_INT));
 
             //Get review info from model
             $reviewInfo = getReviewById($reviewId);
             //Get vehicles info
             $vehicleInfo = getInvItemInfo($invId);
+
             include '../view/review-update.php';
             break;
 
@@ -103,11 +104,35 @@
             break;
 
         case 'displayDeleteReview':
+            $reviewId = trim(filter_input(INPUT_GET, 'reviewId', FILTER_SANITIZE_NUMBER_INT));
+            $invId=trim(filter_input(INPUT_GET, 'invId', FILTER_SANITIZE_NUMBER_INT));
 
+            //Get review info from model
+            $reviewInfo = getReviewById($reviewId);
+            //Get vehicles info
+            $vehicleInfo = getInvItemInfo($invId);
+            include '../view/review-delete.php';
             break;
 
         case 'deleteReview':
+            $reviewId = trim(filter_input(INPUT_POST, 'reviewId', FILTER_SANITIZE_NUMBER_INT));
 
+            //Ask model to update the review
+            $deleteReviewOutcome = deleteReviewById($reviewId);
+            
+            //Check and report the result
+            if($deleteReviewOutcome === 1){
+                $reviewMessage = "<p class='notice'>Your review was succesfully deleted.</p>";
+                $_SESSION['message'] = $reviewMessage;
+                header("location: /CS 340/phpmotors/accounts/");
+                exit;
+            } 
+            else {
+                $reviewMessage = "<p class='error-notice' >Sorry, we couldn't delete your review. Please try again</p>";
+                $_SESSION['message'] = $reviewMessage;
+                header("location: /CS 340/phpmotors/accounts/");
+                exit;
+            }
             break;
 
         default:

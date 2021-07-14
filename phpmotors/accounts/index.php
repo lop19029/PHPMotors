@@ -10,6 +10,10 @@
     require_once "../model/main-model.php";
     //Get the accounts model
     require_once "../model/accounts-model.php";
+    //Get the reviews model
+    require_once "../model/reviews-model.php";
+    //Get the vehicles model
+    require_once "../model/vehicles-model.php";
     //Get functions library
     require_once "../library/functions.php";
 
@@ -80,10 +84,21 @@
             // Store the array into the session
             $_SESSION['clientData'] = $clientData;
 
+            //Generate reviews table
+            $clientReviews = getClientReviews($_SESSION['clientData']['clientId']);
+            $reviewedCarsNames = [];
+            foreach($clientReviews as $review){
+                $invId = $review['invId'];
+                $vehicleInfo = getInvItemInfo($invId);
+                $reviewedCarName = $vehicleInfo['invMake']." ".$vehicleInfo['invModel'];
+                $reviewedCarsNames[] = $reviewedCarName; 
+            }
+            $userReviewsTable = buildUserReviewsTable($clientReviews, $reviewedCarsNames);
+
             //Allow admin functionalities for clients level 2 or 3
             if($_SESSION['clientData']['clientLevel'] > 1){
-                $adminLink = "<h3>Vehicle Management</h3><p>Use this link to manage the inventory</p><br><a class='text-link' href='/CS%20340/phpmotors/vehicles/'>Vehicle Management</a><br><br>";
-                $adminLink.= "<h3>Vehicle Images Management</h3><p>Use this link to manage the inventory images</p><br><a class='text-link' href='/CS%20340/phpmotors/uploads/'>Images Management</a><br><br>";
+                $adminLink = "<h3>Vehicle Management</h3><p>Use this link to manage the inventory</p><a class='text-link' href='/CS%20340/phpmotors/vehicles/'>Vehicle Management</a><br>";
+                $adminLink.= "<h3>Vehicle Images Management</h3><p>Use this link to manage the inventory images</p><a class='text-link' href='/CS%20340/phpmotors/uploads/'>Images Management</a><br>";
             }
 
             // Send them to the admin view
@@ -243,10 +258,24 @@
             break; 
 
         default:
+            //Generate reviews table
+            $clientReviews = getClientReviews($_SESSION['clientData']['clientId']);
+            $reviewedCarsNames = [];
+            foreach($clientReviews as $review){
+                $invId = $review['invId'];
+                $vehicleInfo = getInvItemInfo($invId);
+                $reviewedCarName = $vehicleInfo['invMake']." ".$vehicleInfo['invModel'];
+                $reviewedCarsNames[] = $reviewedCarName; 
+            }
+            echo var_dump($clientReviews);
+            echo var_dump($reviewedCarsNames);
+            exit;
+            $userReviewsTable = buildUserReviewsTable($clientReviews, $reviewedCarsNames);
+
             //Allow admin functionalities for clients level 2 or 3
             if($_SESSION['clientData']['clientLevel'] > 1){
-                $adminLink = "<h3>Vehicle Management</h3><p>Use this link to manage the inventory</p><br><a class='text-link' href='/CS%20340/phpmotors/vehicles/'>Vehicle Management</a><br><br>";
-                $adminLink.= "<h3>Vehicle Images Management</h3><p>Use this link to manage the inventory images</p><br><a class='text-link' href='/CS%20340/phpmotors/uploads/'>Images Management</a><br><br>";
+                $adminLink = "<h3>Vehicle Management</h3><p>Use this link to manage the inventory</p><a class='text-link' href='/CS%20340/phpmotors/vehicles/'>Vehicle Management</a><br>";
+                $adminLink.= "<h3>Vehicle Images Management</h3><p>Use this link to manage the inventory images</p><a class='text-link' href='/CS%20340/phpmotors/uploads/'>Images Management</a><br>";
             }
 
             include "../view/admin.php";

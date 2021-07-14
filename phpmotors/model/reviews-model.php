@@ -37,7 +37,15 @@ function getInvReviews($invId){
 }
 
 //This function returns the reviews written by an specific client
-function getClientReviews(){
+function getClientReviews($clientId){
+    $db = phpmotorsConnect(); 
+    $sql = ' SELECT * FROM reviews WHERE clientId = :clientId'; 
+    $stmt = $db->prepare($sql); 
+    $stmt->bindValue(':clientId', $clientId, PDO::PARAM_INT); 
+    $stmt->execute(); 
+    $clientReviews = $stmt->fetchAll(PDO::FETCH_ASSOC); 
+    $stmt->closeCursor(); 
+    return $clientReviews; 
 
 }
 

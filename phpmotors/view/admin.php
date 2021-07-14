@@ -13,6 +13,7 @@ if(!$_SESSION['loggedin']){
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="../css/styles.css" media="screen">
         <link rel="stylesheet" type="text/css" href="../css/form-styles.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="../css/admin-styles.css" media="screen">
     </head>
     <body>
         <div class = "page-wrapper">
@@ -40,6 +41,10 @@ if(!$_SESSION['loggedin']){
                 <h3>Account management</h3>
                 <p>Use this link to update account information</p>
                 <a class="text-link" href="/CS%20340/phpmotors/accounts/?action=updateClient">Update Account Information</a>
+                <br>
+                <h3>Reviews management</h3>
+                <p>Use this section to modify or delete your reviews</p>
+                <?php echo $userReviewsTable ?>
                 <br>
                 <?php 
                     if(isset($adminLink)){

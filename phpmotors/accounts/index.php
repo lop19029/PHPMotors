@@ -82,7 +82,8 @@
 
             //Allow admin functionalities for clients level 2 or 3
             if($_SESSION['clientData']['clientLevel'] > 1){
-                $adminLink = "<h3>Vehicle Management</h3><p>Use this link to manage the inventory</p><br><a class='text-link' href='/CS%20340/phpmotors/vehicles/'>Vehicle Management.</a>";
+                $adminLink = "<h3>Vehicle Management</h3><p>Use this link to manage the inventory</p><br><a class='text-link' href='/CS%20340/phpmotors/vehicles/'>Vehicle Management</a><br><br>";
+                $adminLink.= "<h3>Vehicle Images Management</h3><p>Use this link to manage the inventory images</p><br><a class='text-link' href='/CS%20340/phpmotors/uploads/'>Images Management</a><br><br>";
             }
 
             // Send them to the admin view
@@ -244,7 +245,8 @@
         default:
             //Allow admin functionalities for clients level 2 or 3
             if($_SESSION['clientData']['clientLevel'] > 1){
-                $adminLink = "<h3>Vehicle Management</h3><p>Use this link to manage the inventory</p><br><a class='text-link' href='/CS%20340/phpmotors/vehicles/'>Vehicle Management.</a>";
+                $adminLink = "<h3>Vehicle Management</h3><p>Use this link to manage the inventory</p><br><a class='text-link' href='/CS%20340/phpmotors/vehicles/'>Vehicle Management</a><br><br>";
+                $adminLink.= "<h3>Vehicle Images Management</h3><p>Use this link to manage the inventory images</p><br><a class='text-link' href='/CS%20340/phpmotors/uploads/'>Images Management</a><br><br>";
             }
 
             include "../view/admin.php";

@@ -40,6 +40,10 @@ li img{
     padding: 7px;
     width: 100%;
     margin-bottom: 10px;
+    height: fit-content;
+}
+form{
+    height: max-content;
 }
 
 input[type="text"], textarea{

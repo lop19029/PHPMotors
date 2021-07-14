@@ -60,7 +60,17 @@
             break;
 
         case 'displayEditReview':
+            $reviewId = trim(filter_input(INPUT_GET, 'reviewId', FILTER_SANITIZE_NUMBER_INT));
+            $invId=trim(filter_input(INPUT_GET, 'reviewId', FILTER_SANITIZE_NUMBER_INT));
 
+            //Get review info from model
+            $reviewInfo = getReviewById($reviewId);
+            //Get vehicles info
+            $vehicleInfo = getInvItemInfo($invId);
+            
+            
+
+            include '../view/modify-review.php';
             break;
 
         case 'updateReview':

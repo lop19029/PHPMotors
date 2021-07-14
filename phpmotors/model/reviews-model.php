@@ -50,8 +50,15 @@ function getClientReviews($clientId){
 }
 
 //This function gets a specific review using Id
-function getReviewById(){
-
+function getReviewById($reviewId){
+    $db = phpmotorsConnect(); 
+    $sql = ' SELECT * FROM reviews WHERE reviewId = :reviewId'; 
+    $stmt = $db->prepare($sql); 
+    $stmt->bindValue(':reviewId', $reviewId, PDO::PARAM_INT); 
+    $stmt->execute(); 
+    $reviewInfo = $stmt->fetchAll(PDO::FETCH_ASSOC); 
+    $stmt->closeCursor(); 
+    return $reviewInfo; 
 }
 
 //This function updates a specific review by Id

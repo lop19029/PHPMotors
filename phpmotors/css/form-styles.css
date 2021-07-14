@@ -31,3 +31,11 @@ input[type=text], input[type=email], input[type=number], input[type=password] {
 
 }
 
+textarea{
+    width: 95%;
+    resize: none;
+    height: 100px;
+    font-size: large;
+}
+
+

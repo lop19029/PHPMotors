@@ -148,6 +148,27 @@ function generateClientScreenName($clientFirstname, $clientLastname){
     return $clientScreenName = $firstNameInicial.$lastNameTreated;
 }
 
+function buildVehicleReviews($reviewsArr, $writersScreenNames) {
+    if(count($reviewsArr) == 0){
+        $vr = "<div class='review-display-wrapper'><p id='no-reviews-text'>Be the first to review this vehicle.<p></div>";
+        return $vr;
+    } 
+    $vr = "<div class='review-display-wrapper'>";
+    $vr.= "<div class='reviews-display'>";
+    $counter = 0;
+    foreach($reviewsArr as $review){
+        $vr.= "<div class = 'review-wrapper'>";
+        $vr.= "<label for='reviewText'>$writersScreenNames[$counter] wrote on ";
+        $vr.= date("d M, Y", strtotime($review['reviewDate']));
+        $vr.= ":</label><br>";
+        $vr.= "<textarea id='reviewText' name='reviewText' readonly>$review[reviewText]</textarea>";
+        $vr.= "</div><br>";
+        $counter++;
+    }
+    $vr.= "</div></div>";
+    return $vr;
+}
+
 /* * ********************************
 *  Functions for working with images
 * ********************************* */

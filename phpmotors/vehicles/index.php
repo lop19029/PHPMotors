@@ -216,16 +216,16 @@ switch ($action) {
 
         //Generate reviews display for this vehicle
         $reviewsArr = getInvReviews($invId);
-        $writersNames = [];
+        $writersScreenNames = [];
         foreach($reviewsArr as $review){
             $clientId = $review['clientId'];
             $clientInfo = getClientData($clientId);
             $clientFirstname = $clientInfo['clientFirstname'];
             $clientLastname = $clientInfo['clientLastname'];
             $clientScreenName = generateClientScreenName($clientFirstname, $clientLastname);
-            $writersNames[] = $clientScreenName;
+            $writersScreenNames[] = $clientScreenName;
         }
-        $vehicleReviews = buildVehicleReviews($reviewsArr, $writersNames); 
+        $vehicleReviews = buildVehicleReviews($reviewsArr, $writersScreenNames); 
 
         include '../view/vehicle-detail.php';
         break;

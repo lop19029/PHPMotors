@@ -158,9 +158,9 @@ function buildVehicleReviews($reviewsArr, $writersScreenNames) {
     $counter = 0;
     foreach($reviewsArr as $review){
         $vr.= "<div class = 'review-wrapper'>";
-        $vr.= "<label for='reviewText'>$writersScreenNames[$counter] wrote on ";
+        $vr.= "<p>$writersScreenNames[$counter] wrote on ";
         $vr.= date("d M, Y", strtotime($review['reviewDate']));
-        $vr.= ":</label><br>";
+        $vr.= ":</p><br>";
         $vr.= "<textarea id='reviewText' name='reviewText' readonly>$review[reviewText]</textarea>";
         $vr.= "</div><br>";
         $counter++;

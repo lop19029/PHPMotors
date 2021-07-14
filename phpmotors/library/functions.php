@@ -122,7 +122,7 @@ function buildReviewsForm($clientScreenName, $clientId, $invId, $vehicleInfo){
     $rf.= "<input type='submit' class='regbtn' value='Submit Review'>";
 
     //Hidden inputs
-    $rf.= "<input type='hidden' class='invId' value='$invId'>";
+    $rf.= "<input type='hidden' name='invId' value='$invId'>";
     $rf.= "<input type='hidden' name='clientId' value='$clientId'>";
     $rf.= "<input type='hidden' name='action' value='addReview'>";
 

@@ -8,6 +8,8 @@
     require_once "../library/connections.php";
     require_once "../model/main-model.php";
     require_once "../model/reviews-model.php";
+    require_once "../model/vehicles-model.php";
+    require_once "../model/uploads-model.php";
     require_once "../library/functions.php";
 
     //Get the array of classifications
@@ -27,7 +29,20 @@
             $reviewText = trim(filter_input(INPUT_POST, 'reviewText', FILTER_SANITIZE_STRING));
             $invId = trim(filter_input(INPUT_POST, 'invId', FILTER_SANITIZE_NUMBER_INT));
             $clientId = trim(filter_input(INPUT_POST, 'clientId', FILTER_SANITIZE_NUMBER_INT));
+            $reviewDate = date("Y-m-d H:i:s", strtotime("now"));
             
+            //Rebuild view
+            $vehicleInfo = getVehicleInfo($invId);
+            $invMake = $vehicleInfo['invMake'];
+            $invModel = $vehicleInfo['invModel'];
+            $thumbImages = getThumbImages($invId);
+            $vehicleDetails = buildVehicleDetails($vehicleInfo, $thumbImages);
+            $clientId = $_SESSION['clientData']['clientId'];
+            $clientFirstname = $_SESSION['clientData']['clientFirstname'];
+            $clientLastname = $_SESSION['clientData']['clientLastname'];
+            $clientScreenName = generateClientScreenName($clientFirstname, $clientLastname);
+            $reviewForm = buildReviewsForm($clientScreenName, $clientId, $invId, $vehicleInfo);
+
             // Check for missing data
             if(empty($reviewText)) {
                 $reviewMessage = "<p class='error-notice'>Please write your review in the blank field below.</p>";
@@ -36,12 +51,12 @@
             }
 
             //Send the data to the model
-            $addReviewOutcome = insertReview($reviewText, $invId, $clientId);
+            $insertReviewOutcome = insertReview($reviewText, $reviewDate, $invId, $clientId);
 
             //Check and report the result
-            if($addReviewOutcome === 1){
+            if($insertReviewOutcome === 1){
                 $reviewMessage = "<p class='notice'>Thanks for your review!</p>";
-                header('location: /CS 340/phpmotors/view/vehicle-detail.php');
+                include '../view/vehicle-detail.php';
                 exit;
             } 
             else {

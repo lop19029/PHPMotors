@@ -3,14 +3,15 @@
 //This is the reviews model
 
 //This function inserts a review into the database
-function insertReview($reviewText, $invId, $clientId){
+function insertReview($reviewText, $reviewDate, $invId, $clientId){
     // Create a connection object using the phpmotors connection function
     $db = phpmotorsConnect(); 
-    $sql = 'INSERT INTO reviews (reviewText, invId, clientId)
-         VALUES (:reviewText, :invId, :clientId)';
+    $sql = 'INSERT INTO reviews (reviewText, reviewDate, invId, clientId)
+         VALUES (:reviewText, :reviewDate, :invId, :clientId)';
     $stmt = $db->prepare($sql);
     // Replace the placeholders in the SQL
     $stmt->bindValue(':reviewText', $reviewText, PDO::PARAM_STR);
+    $stmt->bindValue(':reviewDate', $reviewDate, PDO::PARAM_STR);
     $stmt->bindValue(':invId', $invId, PDO::PARAM_INT); 
     $stmt->bindValue(':clientId', $clientId, PDO::PARAM_INT); 
     //Insert data
